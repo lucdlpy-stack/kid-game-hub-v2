@@ -151,8 +151,12 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onSelect, isFocused })
       {/* Top Bar with Icon & Age Tag */}
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-3 mb-4">
-          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border-2 border-slate-200 shadow-inner flex items-center justify-center text-4xl sm:text-5xl group-hover:scale-110 transition-transform">
-            {game.icon}
+          <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-white border-3 border-amber-300 shadow-md flex items-center justify-center text-4xl sm:text-5xl group-hover:scale-110 transition-transform select-none shrink-0 overflow-hidden font-['Apple_Color_Emoji','Segoe_UI_Emoji','Segoe_UI_Symbol','Noto_Color_Emoji',sans-serif]">
+            {game.icon && game.icon.trim() ? (
+              <span className="leading-none drop-shadow-sm">{game.icon}</span>
+            ) : (
+              <span className="leading-none drop-shadow-sm">🎮</span>
+            )}
           </div>
 
           <div className="flex flex-col items-end gap-1">

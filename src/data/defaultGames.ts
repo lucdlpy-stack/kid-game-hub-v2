@@ -73,6 +73,46 @@ export const DEFAULT_GAMES: Game[] = [
         hint: 'Xe màu đỏ tươi có còi hụ vang xin đường cứu hỏa!',
         soundType: 'car',
         emoji: '🚨'
+      },
+      {
+        question: 'Khi di chuyển qua gầm cầu thang hay lối thoát hiểm, bé nhìn theo bảng hiệu có chữ gì?',
+        options: ['Bảng EXIT Lối Ra', 'Bảng Cấm Đi', 'Bảng Dừng Lại'],
+        optionEmojis: ['🏃‍♂️', '🚫', '🛑'],
+        correctAnswer: 'Bảng EXIT Lối Ra',
+        timeLimit: 20,
+        hint: 'Bảng màu xanh lá cây chỉ hướng thoát hiểm an toàn!',
+        soundType: 'bell',
+        emoji: '🚪'
+      },
+      {
+        question: 'Khi bị kẹt trong phòng có khói, bé có nên chui vào gầm giường hay tủ áo trốn không?',
+        options: ['Không Được Trốn Gầm Giường', 'Trốn Trong Tủ Áo', 'Chui Xuống Thảm'],
+        optionEmojis: ['🙅‍♂️', '🚪', '🛏️'],
+        correctAnswer: 'Không Được Trốn Gầm Giường',
+        timeLimit: 20,
+        hint: 'Bé cần đứng gần cửa sổ hoặc ban công vẫy tay gọi chú cứu hỏa thấy!',
+        soundType: 'bell',
+        emoji: '🛏️'
+      },
+      {
+        question: 'Dụng cụ chữa cháy cầm tay có bình xịt khí nén dập lửa gọi là gì?',
+        options: ['Bình Cứu Hỏa', 'Bình Nước Uống', 'Bóng Thổi'],
+        optionEmojis: ['🧯', '🍼', '🎈'],
+        correctAnswer: 'Bình Cứu Hỏa',
+        timeLimit: 20,
+        hint: 'Bình xịt dập tắt đám lửa khẩn cấp!',
+        soundType: 'bell',
+        emoji: '🧯'
+      },
+      {
+        question: 'Khi ra ngoài ban công kêu cứu hỏa, bé nên vẫy vật dụng gì rực rỡ?',
+        options: ['Áo Hoặc Khăn Sáng Màu', 'Tờ Giấy Đen', 'Đôi Dép'],
+        optionEmojis: ['👕', '⬛', '👟'],
+        correctAnswer: 'Áo Hoặc Khăn Sáng Màu',
+        timeLimit: 20,
+        hint: 'Vẫy áo sáng màu để các chú cứu hỏa phát hiện vị trí bé nhanh nhất!',
+        soundType: 'bell',
+        emoji: '🚩'
       }
     ]
   },
@@ -146,6 +186,46 @@ export const DEFAULT_GAMES: Game[] = [
         hint: 'Cơ thể bé là của riêng bé, tuyệt đối không ai được xâm phạm!',
         soundType: 'bell',
         emoji: '🛡️'
+      },
+      {
+        question: 'Nếu có ai đó bảo "Mẹ nhờ chú đón cháu về", bé phải làm thế nào?',
+        options: ['Hỏi Cô Giáo Xac Nhận', 'Tự Ý Đi Theo Ngay', 'Trèo Lên Xe Ngay'],
+        optionEmojis: ['👩‍🏫', '🚶‍♂️', '🛵'],
+        correctAnswer: 'Hỏi Cô Giáo Xac Nhận',
+        timeLimit: 20,
+        hint: 'Luôn nhờ cô giáo hoặc bảo vệ trường xác nhận với bố mẹ trước!',
+        soundType: 'bell',
+        emoji: '🏫'
+      },
+      {
+        question: 'Khi bị tụt lại đằng sau rủ không thấy bố mẹ đâu trong siêu thị, bé nên tìm ai trợ giúp?',
+        options: ['Chú Bảo Vệ Hoặc Thu Ngân', 'Người Lạ Đeo Mặt Nạ', 'Chạy Ra Đường Lớn'],
+        optionEmojis: ['👮‍♂️', '🥷', '🛣️'],
+        correctAnswer: 'Chú Bảo Vệ Hoặc Thu Ngân',
+        timeLimit: 20,
+        hint: 'Chú bảo vệ đồng phục hoặc cô thu ngân siêu thị sẽ gọi loa giúp bé!',
+        soundType: 'bell',
+        emoji: '🏬'
+      },
+      {
+        question: 'Bé có nên tự ý cho người lạ chụp ảnh hay đăng hình thông tin cá nhân của bé không?',
+        options: ['Không Tự Ý Cho Chụp', 'Đồng Ý Cho Chụp', 'Tự Đọc Số Nhà'],
+        optionEmojis: ['🙅‍♀️', '📸', '🏡'],
+        correctAnswer: 'Không Tự Ý Cho Chụp',
+        timeLimit: 20,
+        hint: 'Bảo vệ thông tin và hình ảnh cá nhân an toàn!',
+        soundType: 'bell',
+        emoji: '📱'
+      },
+      {
+        question: 'Kỹ năng quy tắc 5 ngón tay dạy bé ôm hôn đối tượng nào?',
+        options: ['Ông Bà Bố Mẹ Ruột', 'Người Lạ Ngoài Đường', 'Bất Kỳ Ai'],
+        optionEmojis: ['👨‍👩‍👧', '🚶‍♀️', '👥'],
+        correctAnswer: 'Ông Bà Bố Mẹ Ruột',
+        timeLimit: 20,
+        hint: 'Ngón cái gần nhất tượng trưng cho Ông Bà, Bố Mẹ, Anh Chị Em ruột!',
+        soundType: 'bell',
+        emoji: '🖐️'
       }
     ]
   },
@@ -219,6 +299,46 @@ export const DEFAULT_GAMES: Game[] = [
         hint: 'Giúp giao thông luôn thông thoáng và mọi người đi lại an toàn!',
         soundType: 'bell',
         emoji: '👮'
+      },
+      {
+        question: 'Xe cứu thương chở bệnh nhân đến công trình nào để bác sĩ khám chữa bệnh?',
+        options: ['Bệnh Viện Y Tế', 'Công Viên Giải Trí', 'Rạp Phim'],
+        optionEmojis: ['🏥', '🎡', '🍿'],
+        correctAnswer: 'Bệnh Viện Y Tế',
+        timeLimit: 20,
+        hint: 'Bệnh viện là nơi các bác sĩ và y tá chăm sóc người ốm!',
+        soundType: 'car',
+        emoji: '🏥'
+      },
+      {
+        question: 'Khi gặp sự cố rò rỉ điện hoặc dây điện rơi xuống đất, bé phải làm gì?',
+        options: ['Tránh Xa Vùng Điện', 'Sờ Tay Vào Dây', 'Nhảy Vào Nước'],
+        optionEmojis: ['⚡', '✋', '🌊'],
+        correctAnswer: 'Tránh Xa Vùng Điện',
+        timeLimit: 20,
+        hint: 'Điện nguy hiểm, bé không bao giờ chạm tay vào điện!',
+        soundType: 'bell',
+        emoji: '🔌'
+      },
+      {
+        question: 'Phương tiện bay nào có cánh quạt to trên mái giúp bác sĩ cấp cứu ở vùng núi cao?',
+        options: ['Trực Thăng Cứu Hộ', 'Tàu Thủy', 'Xe Đạp'],
+        optionEmojis: ['🚁', '🚢', '🚲'],
+        correctAnswer: 'Trực Thăng Cứu Hộ',
+        timeLimit: 20,
+        hint: 'Trực thang bay nhanh trên trời ứng cứu khẩn cấp!',
+        soundType: 'car',
+        emoji: '🚁'
+      },
+      {
+        question: 'Biểu tượng hình chữ thập màu đỏ trên xe cấp cứu có ý nghĩa gì?',
+        options: ['Biểu Tượng Y Tế', 'Trái Cây', 'Hình Ngôi Sao'],
+        optionEmojis: ['🏥', '🍎', '⭐'],
+        correctAnswer: 'Biểu Tượng Y Tế',
+        timeLimit: 20,
+        hint: 'Chữ thập đỏ tượng trưng cho ngành y tế cứu giúp người!',
+        soundType: 'bell',
+        emoji: '➕'
       }
     ]
   },
@@ -530,6 +650,36 @@ export const DEFAULT_GAMES: Game[] = [
         hint: 'Bạn vịt có đôi chân màng chèo bơi thoăn thoắt!',
         soundType: 'bell',
         emoji: '🦆'
+      },
+      {
+        question: 'Con gì có bộ lông sọc trắng đen rực rỡ chạy trên đồng cỏ xanh?',
+        options: ['Chú Ngựa Vằn', 'Chú Bò Sữa', 'Chú Thỏ'],
+        optionEmojis: ['🦓', '🐮', '🐰'],
+        correctAnswer: 'Chú Ngựa Vằn',
+        timeLimit: 20,
+        hint: 'Bộ lông sọc đen trắng rất độc đáo!',
+        soundType: 'bell',
+        emoji: '🦓'
+      },
+      {
+        question: 'Con gì thích leo trèo trên cây ăn chuối chín thơm?',
+        options: ['Chú Khỉ Nâu Tinh Nghịch', 'Bác Rùa Già', 'Chú Heo Ủn Ỉn'],
+        optionEmojis: ['🐒', '🐢', '🐷'],
+        correctAnswer: 'Chú Khỉ Nâu Tinh Nghịch',
+        timeLimit: 20,
+        hint: 'Chú khỉ có cái đuôi dài đánh đu trên cành cây!',
+        soundType: 'bell',
+        emoji: '🐒'
+      },
+      {
+        question: 'Bạn nào cho bé dòng sữa thơm ngọt mỗi ngày?',
+        options: ['Cô Bò Sữa Hiền Lành', 'Chú Cáo Đỏ', 'Bé Sóc Nhỏ'],
+        optionEmojis: ['🐮', '🦊', '🐿️'],
+        correctAnswer: 'Cô Bò Sữa Hiền Lành',
+        timeLimit: 20,
+        hint: 'Cô bò sữa thong thả gặm cỏ tươi trên đồng!',
+        soundType: 'bell',
+        emoji: '🐮'
       }
     ]
   },
@@ -603,7 +753,445 @@ export const DEFAULT_GAMES: Game[] = [
         hint: 'Màu xanh êm dịu và bao la vô tận!',
         soundType: 'star',
         emoji: '🌊'
+      },
+      {
+        question: 'Ngôi sao 5 cánh trên lá cờ Tổ quốc có màu gì rực rỡ?',
+        options: ['Màu Vàng Tươi', 'Màu Tím', 'Màu Nâu'],
+        optionEmojis: ['⭐', '🟣', '🟤'],
+        correctAnswer: 'Màu Vàng Tươi',
+        timeLimit: 20,
+        hint: 'Ngôi sao vàng 5 cánh tỏa sáng trên nền cờ đỏ!',
+        soundType: 'star',
+        emoji: '⭐'
+      },
+      {
+        question: 'Quả dải cầu vồng xuất hiện sau cơn mưa thường có mấy sắc màu lấp lánh?',
+        options: ['7 Sắc Cầu Vồng', '1 Màu Duy Nhất', '2 Màu Đen Trắng'],
+        optionEmojis: ['🌈', '⚪', '⬛'],
+        correctAnswer: '7 Sắc Cầu Vồng',
+        timeLimit: 20,
+        hint: 'Cầu vồng có 7 màu: Đỏ, cam, vàng, lục, lam, chàm, tím!',
+        soundType: 'bell',
+        emoji: '🌈'
+      },
+      {
+        question: 'Tờ giấy vẽ tranh khen thưởng học sinh ngoan có dạng hình gì?',
+        options: ['Hình Chữ Nhật', 'Hình Tròn', 'Hình Tam Giác'],
+        optionEmojis: ['📄', '⚪', '🔺'],
+        correctAnswer: 'Hình Chữ Nhật',
+        timeLimit: 20,
+        hint: 'Hình chữ nhật có 2 cạnh dài và 2 cạnh ngắn bằng nhau!',
+        soundType: 'bell',
+        emoji: '📜'
+      },
+      {
+        question: 'Quả cam chín ngọt lịm có hình khối gì dễ lăn tròn trên bàn?',
+        options: ['Hình Cầu Tròn', 'Hình Hộp Vuông', 'Hình Nón'],
+        optionEmojis: ['🍊', '📦', '🍦'],
+        correctAnswer: 'Hình Cầu Tròn',
+        timeLimit: 20,
+        hint: 'Quả cam tròn vo như quả bóng nhỏ!',
+        soundType: 'star',
+        emoji: '🍊'
       }
+    ]
+  },
+
+  // === DÒNG GAME MỚI (BỔ SUNG THEO XU HƯỚNG TƯƠNG TÁC MẦM NON MỚI NHẤT) ===
+
+  // 21. GAME KỸ NĂNG: AN TOÀN ĐIỆN VÀ NƯỚC Ở NHÀ
+  {
+    id: 'game_an_toan_dien_nuoc',
+    title: 'Bé Giữ An Toàn Điện & Nước Ở Nhà',
+    icon: '🔌',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé học cách không chạm tay ướt vào ổ điện, cẩn thận vòi nước nóng và dọn dẹp đồ chơi gọn gàng!',
+    badgeTheme: 'amber',
+    interactiveQuestions: [
+      {
+        question: 'Khi tay bé đang ướt nước, bé có được sờ vào ổ cắm điện không?',
+        options: ['Tuyệt Đối Không Chạm', 'Chạm Vào Vui Chơi', 'Lấy Que Chọc Vào'],
+        optionEmojis: ['🛑', '⚡', '🥢'],
+        correctAnswer: 'Tuyệt Đối Không Chạm',
+        timeLimit: 20,
+        hint: 'Nước dẫn điện rất nguy hiểm, tay ướt không bao giờ được chạm vào ổ điện nha con!',
+        soundType: 'bell',
+        emoji: '🔌'
+      },
+      {
+        question: 'Khi thấy phích cắm điện bị hở tia lửa hoặc khét, bé phải gọi ai ngay?',
+        options: ['Gọi Bố Mẹ Hoặc Người Lớn', 'Tự Lấy Tay Kéo Dây', 'Đổ Nước Vào'],
+        optionEmojis: ['👨‍👩‍👧', '✋', '💧'],
+        correctAnswer: 'Gọi Bố Mẹ Hoặc Người Lớn',
+        timeLimit: 20,
+        hint: 'Luôn báo ngay cho bố mẹ hoặc cô giáo xử lý an toàn nè!',
+        soundType: 'bell',
+        emoji: '⚠️'
+      },
+      {
+        question: 'Khi tắm vòi sen, trước khi xả nước vào người bé cần làm gì?',
+        options: ['Nhờ Bố Mẹ Thử Nước Ấm', 'Nhảy Vào Nước Sôi', 'Uống Nước Bồn'],
+        optionEmojis: ['🛁', '♨️', '🚰'],
+        correctAnswer: 'Nhờ Bố Mẹ Thử Nước Ấm',
+        timeLimit: 20,
+        hint: 'Thử độ ấm vừa vặn giúp bé tắm mát mà không bị bỏng nha con!',
+        soundType: 'bell',
+        emoji: '🚿'
+      },
+      {
+        question: 'Đồ chơi sắc nhọn hoặc kéo cắt giấy, bé có được cầm chạy nhảy lung tung không?',
+        options: ['Không Cầm Chạy Nhảy', 'Cầm Chạy Tung Tăng', 'Ném Sang Bạn'],
+        optionEmojis: ['🙅‍♂️', '🏃', '✂️'],
+        correctAnswer: 'Không Cầm Chạy Nhảy',
+        timeLimit: 20,
+        hint: 'Vật sắc nhọn dễ làm đau bé, cần ngồi yên và nhờ cô giáo hỗ trợ nè!',
+        soundType: 'bell',
+        emoji: '✂️'
+      },
+      {
+        question: 'Chơi xong đồ chơi xếp hình, bé ngoan nên làm gì để nhà cửa gọn gàng?',
+        options: ['Thu Vào Giỏ Gọn Gàng', 'Vứt Bừa Bãi Ra Sàn', 'Đá Sang Góc Nhà'],
+        optionEmojis: ['🧺', '🧸', '🗑️'],
+        correctAnswer: 'Thu Vào Giỏ Gọn Gàng',
+        timeLimit: 20,
+        hint: 'Dọn đồ chơi giúp sàn nhà sạch sẽ và bé không bị vấp ngã nha con!',
+        soundType: 'bell',
+        emoji: '📦'
+      },
+      {
+        question: 'Ấm nước đang sôi bốc khói trên bếp, bé có được đến gần chạm tay vào không?',
+        options: ['Tránh Xa Bếp Nóng', 'Sờ Tay Vào Ấm', 'Bê Ấm Nước Đi'],
+        optionEmojis: ['🛑', '✋', '🫖'],
+        correctAnswer: 'Tránh Xa Bếp Nóng',
+        timeLimit: 20,
+        hint: 'Bếp nóng nguy hiểm lắm, bé đứng xa khu vực bếp nấu nướng nha!',
+        soundType: 'bell',
+        emoji: '🫖'
+      },
+      {
+        question: 'Khi trời mưa to sấm chớp đùng đoàng, bé nên ở đâu an toàn nhất?',
+        options: ['Ở Trong Nhà Kín Cửa', 'Đứng Dưới Gốc Cây To', 'Tắm Mưa Ngoài Đồng'],
+        optionEmojis: ['🏠', '🌳', '🌧️'],
+        correctAnswer: 'Ở Trong Nhà Kín Cửa',
+        timeLimit: 20,
+        hint: 'Ở trong nhà ấm áp giúp bé an toàn trước sấm sét và mưa to nè!',
+        soundType: 'bell',
+        emoji: '⚡'
+      },
+      {
+        question: 'Thuốc uống của người lớn để trong tủ, bé có được tự ý lấy uống không?',
+        options: ['Không Được Tự Ý Uống', 'Lấy Uống Thử', 'Tưởng Là Kẹo Ăn'],
+        optionEmojis: ['🙅‍♀️', '💊', '🍬'],
+        correctAnswer: 'Không Được Tự Ý Uống',
+        timeLimit: 20,
+        hint: 'Chỉ uống thuốc khi được bác sĩ và bố mẹ cho phép nha con!',
+        soundType: 'bell',
+        emoji: '💊'
+      },
+      {
+        question: 'Khi rửa tay xong ở bồn rửa, bé nhớ làm gì để tiết kiệm nước sạch?',
+        options: ['Vặn Khóa Vòi Nước Lại', 'Mở Nước Chảy Tràn', 'Bỏ Đi Chơi'],
+        optionEmojis: ['🚰', '🌊', '🏃'],
+        correctAnswer: 'Vặn Khóa Vòi Nước Lại',
+        timeLimit: 20,
+        hint: 'Khóa vòi nước bảo vệ nguồn nước sạch và giúp nhà vệ sinh khô ráo!',
+        soundType: 'bell',
+        emoji: '💧'
+      },
+      {
+        question: 'Dây điện thoại đang cắm sạc pin, bé có được ngậm hay giật mạnh không?',
+        options: ['Tuyệt Đối Không Giật Dây', 'Ngậm Đầu Dây Sạc', 'Kéo Rê Khắp Nhà'],
+        optionEmojis: ['🛑', '📱', '🔌'],
+        correctAnswer: 'Tuyệt Đối Không Giật Dây',
+        timeLimit: 20,
+        hint: 'Bảo vệ nguồn điện an toàn cho bé và cả gia đình nè!',
+        soundType: 'bell',
+        emoji: '🔋'
+      }
+    ]
+  },
+
+  // 22. GAME GHÉP HÌNH: PHÂN LOẠI RÁC VÀ BẢO VỆ MÔI TRƯỜNG
+  {
+    id: 'game_ghephinh_bao_ve_moi_truong',
+    title: 'Bé Yêu Môi Trường & Phân Loại Rác',
+    icon: '🌱',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Bé ghép lá cây với thùng rác hữu cơ, chai nhựa với thùng tái chế và trồng cây xanh!',
+    badgeTheme: 'emerald',
+    puzzlePairs: [
+      { id: 'p1', name: 'Vỏ Chuối Chín', symbol: '🍌', matchTarget: 'Thùng Rác Hữu Cơ Xanh', targetSymbol: '🟢', hint: 'Vỏ trái cây phân hủy làm phân bón hữu cơ tươi tốt cho cây trồng!' },
+      { id: 'p2', name: 'Chai Nước Nhựa', symbol: '🍶', matchTarget: 'Thùng Nhựa Tái Chế', targetSymbol: '♻️', hint: 'Chai nhựa thu gom để tái chế thành đồ dùng mới xinh xắn!' },
+      { id: 'p3', name: 'Cây Con Xanh Mát', symbol: '🌱', matchTarget: 'Bình Tưới Nước Vòi', targetSymbol: '🚿', hint: 'Tưới nước mỗi ngày để mầm non lớn nhanh thành bóng mát!' },
+      { id: 'p4', name: 'Vỏ Hộp Sữa Giấy', symbol: '🧃', matchTarget: 'Thùng Giấy Tái Chế', targetSymbol: '📦', hint: 'Xếp dẹp vỏ hộp sữa giấy bỏ vào thùng tái chế bảo vệ môi trường!' },
+      { id: 'p5', name: 'Bóng Đèn Cũ Hỏng', symbol: '💡', matchTarget: 'Thùng Rác Nguy Hại', targetSymbol: '⚠️', hint: 'Bóng đèn thủy tinh cẩn thận phân loại riêng an toàn!' },
+      { id: 'p6', name: 'Bông Hoa Rực Rỡ', symbol: '🌸', matchTarget: 'Ong Mật & Bướm Vàng', targetSymbol: '🐝', hint: 'Hoa nở thơm ngát mời bạn ong bướm đến hút mật hoa ngọt!' }
+    ]
+  },
+
+  // 23. GAME GHÉP HÌNH: ĐỒ DÙNG HỌC TẬP MẪU GIÁO
+  {
+    id: 'game_ghephinh_do_dung_hoc_tap',
+    title: 'Ghép Đồ Dùng Học Tập Mầm Non',
+    icon: '🎒',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Bé ghép bút chì màu với vở vẽ, kéo thủ công với giấy màu, cặp sách với trường học!',
+    badgeTheme: 'indigo',
+    puzzlePairs: [
+      { id: 'p1', name: 'Hộp Sáp Màu Đẹp', symbol: '🖍️', matchTarget: 'Trang Vở Vẽ Trắng', targetSymbol: '📄', hint: 'Dùng bút sáp màu tô vẽ cầu vồng và ngôi nhà mơ ước!' },
+      { id: 'p2', name: 'Cặp Sách Mầm Non', symbol: '🎒', matchTarget: 'Trường Mẫu Giáo Vui', targetSymbol: '🏫', hint: 'Đeo cặp sách xinh cùng bạn đến lớp học bao điều hay!' },
+      { id: 'p3', name: 'Kéo Thủ Công An Toàn', symbol: '✂️', matchTarget: 'Tờ Giấy Màu Xếp Hình', targetSymbol: '📜', hint: 'Kéo đầu tròn giúp bé cắt dán hình chú cá bơi lội!' },
+      { id: 'p4', name: 'Hũ Hồ Dán Giấy', symbol: '🧴', matchTarget: 'Tranh Ghép Lá Cây', targetSymbol: '🍁', hint: 'Bôi hồ dán các chiếc lá thành hình chú chim xinh xắn!' },
+      { id: 'p5', name: 'Bình Nước Bé Mang', symbol: '🍼', matchTarget: 'Khăn Lau Tay Sạch', targetSymbol: '🧼', hint: 'Uống nước đầy đủ và lau tay sạch sẽ trước khi vào lớp!' },
+      { id: 'p6', name: 'Bộ Đất Nặn Nhiều Màu', symbol: '🧁', matchTarget: 'Hình Con Vật Đất Sét', targetSymbol: '🐥', hint: 'Bé dùng tay nhào nặn đất sét thành những chú gà con đáng yêu!' }
+    ]
+  },
+
+  // 24. GAME ĐỐ VUI: KỸ NĂNG VỆ SINH CÁ NHÂN & RỬA TAY 6 BƯỚC
+  {
+    id: 'game_ve_sinh_ca_nhan',
+    title: 'Bé Giữ Vệ Sinh Cá Nhân Sạch Sẽ',
+    icon: '🧼',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé học rửa tay xà phòng trước khi ăn, đánh răng ngày 2 lần và giữ đôi tay luôn thơm tho!',
+    badgeTheme: 'cyan',
+    interactiveQuestions: [
+      {
+        question: 'Trước khi ăn cơm hoặc sau khi đi vệ sinh, bé cần làm gì sạch sẽ?',
+        options: ['Rửa Tay Bằng Xà Phòng', 'Lau Tay Vào Quần', 'Ăn Luôn Không Cần Rửa'],
+        optionEmojis: ['🧼', '👖', '🍚'],
+        correctAnswer: 'Rửa Tay Bằng Xà Phòng',
+        timeLimit: 20,
+        hint: 'Rửa tay sạch xà phòng diệt sạch vi khuẩn cho bụng bé khỏe mạnh nè!',
+        soundType: 'bell',
+        emoji: '🧼'
+      },
+      {
+        question: 'Mỗi ngày bé nên đánh răng mấy lần để có nụ cười trắng sáng thơm tho?',
+        options: ['2 Lần (Sáng & Tối)', 'Không Cần Đánh Răng', 'Chỉ Đánh 1 Lần Trong Tuần'],
+        optionEmojis: ['🪥', '❌', '📅'],
+        correctAnswer: '2 Lần (Sáng & Tối)',
+        timeLimit: 20,
+        hint: 'Đánh răng sáng sau khi thức dậy và tối trước khi đi ngủ nha con!',
+        soundType: 'bell',
+        emoji: '🦷'
+      },
+      {
+        question: 'Dụng cụ nào giúp bé làm sạch răng mỗi buổi sáng thức dậy?',
+        options: ['Bàn Chải & Kem Đánh Răng', 'Cây Chổi Quét Nhà', 'Chiếc Muỗng Ăn Cơm'],
+        optionEmojis: ['🪥', '🧹', '🥄'],
+        correctAnswer: 'Bàn Chải & Kem Đánh Răng',
+        timeLimit: 20,
+        hint: 'Bàn chải lông mềm chải sạch từng kẽ răng xinh xắn!',
+        soundType: 'bell',
+        emoji: '🪥'
+      },
+      {
+        question: 'Khi ho hoặc hắt xì hơi, bé dùng vật gì để che miệng lịch sự?',
+        options: ['Khăn Giấy Hoặc Khuỷu Tay', 'Hắt Vào Mặt Bạn', 'Không Che Miệng'],
+        optionEmojis: ['🤧', '🤦', '💨'],
+        correctAnswer: 'Khăn Giấy Hoặc Khuỷu Tay',
+        timeLimit: 20,
+        hint: 'Che miệng bằng khăn giấy hoặc khuỷu tay bảo vệ sức khỏe cho mọi người nha!',
+        soundType: 'bell',
+        emoji: '🤧'
+      },
+      {
+        question: 'Móng tay móng chân dài có nhiều đất bẩn, bé cần nhờ ai cắt tỉa gọn gàng?',
+        options: ['Nhờ Bố Mẹ Cắt Giúp', 'Tự Lấy Răng Cắn Móng', 'Để Móng Thật Dài'],
+        optionEmojis: ['👨‍👩‍👧', '😬', '💅'],
+        correctAnswer: 'Nhờ Bố Mẹ Cắt Giúp',
+        timeLimit: 20,
+        hint: 'Bố mẹ dùng bấm móng tay tỉa sạch sẽ cho đôi tay bé xinh!',
+        soundType: 'bell',
+        emoji: '✂️'
+      },
+      {
+        question: 'Khi tắm gội xong, bé dùng vật gì êm mềm để lau khô người?',
+        options: ['Khăn Tắm Bông Êm', 'Tấm Bạt Nhựa', 'Tờ Giấy Báo'],
+        optionEmojis: ['🧖', '🧱', '📰'],
+        correctAnswer: 'Khăn Tắm Bông Êm',
+        timeLimit: 20,
+        hint: 'Khăn bông êm ái thấm nước giúp bé không bị lạnh nè!',
+        soundType: 'bell',
+        emoji: '🧖'
+      },
+      {
+        question: 'Quy trình rửa tay chuẩn của Bộ Y tế gồm có mấy bước sạch bong?',
+        options: ['6 Bước Chuẩn Sạch', '1 Bước Nhanh', '10 Bước'],
+        optionEmojis: ['🖐️', '☝️', '🔟'],
+        correctAnswer: '6 Bước Chuẩn Sạch',
+        timeLimit: 20,
+        hint: '6 bước chà lòng bàn tay, mu bàn tay, kẽ ngón tay thật sạch vi khuẩn!',
+        soundType: 'bell',
+        emoji: '💦'
+      },
+      {
+        question: 'Quần áo đi học hoặc đi chơi bị lấm lem bùn đất, bé nên làm gì?',
+        options: ['Thay Ra Bỏ Vào Chậu Giặt', 'Mặc Luôn Đi Ngủ', 'Cất Vào Tủ'],
+        optionEmojis: ['🧺', '🛏️', '🚪'],
+        correctAnswer: 'Thay Ra Bỏ Vào Chậu Giặt',
+        timeLimit: 20,
+        hint: 'Bỏ quần áo bẩn vào chậu để mẹ giặt thơm phức nha con!',
+        soundType: 'bell',
+        emoji: '👕'
+      },
+      {
+        question: 'Đôi dép đi trong nhà giúp bảo vệ lòng bàn chân bé như thế nào?',
+        options: ['Chân Ấm Áp & Sạch Sẽ', 'Làm Chân Bị Ướt', 'Cho Chân Đi Đau'],
+        optionEmojis: ['🩴', '🌊', '🩹'],
+        correctAnswer: 'Chân Ấm Áp & Sạch Sẽ',
+        timeLimit: 20,
+        hint: 'Đi dép êm giúp chân bé ấm và tránh giẫm phải vật nhọn nè!',
+        soundType: 'bell',
+        emoji: '🩴'
+      },
+      {
+        question: 'Uống đủ nước ấm lọc sạch mỗi ngày giúp cơ thể bé ra sao?',
+        options: ['Khỏe Mạnh & Da Dẻ Hồng Hào', 'Bị Đau Bụng', 'Hay Bị Ốm'],
+        optionEmojis: ['💪', '🤢', '🤒'],
+        correctAnswer: 'Khỏe Mạnh & Da Dẻ Hồng Hào',
+        timeLimit: 20,
+        hint: 'Nước lọc thanh lọc cơ thể cho bé năng động học giỏi!',
+        soundType: 'bell',
+        emoji: '🥤'
+      }
+    ]
+  },
+
+  // 25. GAME ĐỐ VUI: KHOA HỌC THỜI TIẾT & BỐN MÙA
+  {
+    id: 'game_khoa_hoc_bon_mua',
+    title: 'Khám Phá Bốn Mùa & Thời Tiết',
+    icon: '🌦️',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé nhận biết Mùa Xuân hoa đào nở, Mùa Hè tắm biển, Mùa Thu rước đèn và Mùa Đông mặc áo ấm!',
+    badgeTheme: 'rose',
+    interactiveQuestions: [
+      {
+        question: 'Mùa nào hoa đào hoa mai nở rộ, các bé được mặc áo mới nhận lì xì?',
+        options: ['Mùa Xuân Vui Tươi', 'Mùa Đông Lạnh', 'Mùa Thu'],
+        optionEmojis: ['🌸', '❄️', '🍂'],
+        correctAnswer: 'Mùa Xuân Vui Tươi',
+        timeLimit: 20,
+        hint: 'Mùa xuân đón Tết cổ truyền đoàn tụ bên gia đình!',
+        soundType: 'star',
+        emoji: '🌸'
+      },
+      {
+        question: 'Khi trời mưa rơi lộp độp, bé đi ra ngoài cần mang theo vật dụng gì?',
+        options: ['Chiếc Ô Xinh Hoặc Áo Mưa', 'Cây Quạt Giấy', 'Kính Râm Đen'],
+        optionEmojis: ['☂️', '🪭', '🕶️'],
+        correctAnswer: 'Chiếc Ô Xinh Hoặc Áo Mưa',
+        timeLimit: 20,
+        hint: 'Che ô hoặc mặc áo mưa để bé không bị ướt áo lạnh cảm nha!',
+        soundType: 'bell',
+        emoji: '☔'
+      },
+      {
+        question: 'Mùa hè trời nắng nóng rực rỡ, bé cùng gia đình hay đi nghỉ mát ở đâu?',
+        options: ['Bãi Biển Xanh Mát', 'Lên Ngọn Cây', 'Ngồi Trong Hang Tối'],
+        optionEmojis: ['🏖️', '🌴', '🦇'],
+        correctAnswer: 'Bãi Biển Xanh Mát',
+        timeLimit: 20,
+        hint: 'Đi tắm biển và xây lâu đài cát vui ơi là vui nè!',
+        soundType: 'bell',
+        emoji: '🏖️'
+      },
+      {
+        question: 'Đêm Tết Trung Thu vào mùa thu, các bé rước đèn gì lung linh dưới ánh trăng?',
+        options: ['Đèn Ông Sao 5 Cánh', 'Đèn Pin Sáng', 'Bóng Đèn Bàn'],
+        optionEmojis: ['🏮', '🔦', '💡'],
+        correctAnswer: 'Đèn Ông Sao 5 Cánh',
+        timeLimit: 20,
+        hint: 'Chiếc đèn ông sao màu đỏ rực rỡ hát vang tùng rinh rinh!',
+        soundType: 'bell',
+        emoji: '🏮'
+      },
+      {
+        question: 'Khi mùa đông gió lạnh thổi về, bé mặc trang phục gì để giữ ấm cổ và ngực?',
+        options: ['Áo Khoác Ấm & Khăn Len', 'Áo Ba Lỗ Ngắn', 'Quần Bơi'],
+        optionEmojis: ['🧥', '🎽', '🩳'],
+        correctAnswer: 'Áo Khoác Ấm & Khăn Len',
+        timeLimit: 20,
+        hint: 'Mặc áo ấm và quàng khăn len bảo vệ cổ họng bé không bị ho nè!',
+        soundType: 'bell',
+        emoji: '🧣'
+      },
+      {
+        question: 'Ông Mặt Trời chiếu ánh nắng ấm áp giúp cây cối và hoa lá như thế nào?',
+        options: ['Xanh Tươi Phát Triển', 'Bị Héo Khô Rụng', 'Biến Mất'],
+        optionEmojis: ['🌻', '🥀', '💨'],
+        correctAnswer: 'Xanh Tươi Phát Triển',
+        timeLimit: 20,
+        hint: 'Ánh nắng mặt trời cung cấp vitamin D cho bé và quang hợp cho cây!',
+        soundType: 'star',
+        emoji: '☀️'
+      },
+      {
+        question: 'Hiện tượng gì xuất hiện trên bầu trời sau cơn mưa với 7 sắc màu rực rỡ?',
+        options: ['Cầu Vồng Lấp Lánh', 'Đám Mây Đen', 'Khói Độc'],
+        optionEmojis: ['🌈', '☁️', '🌫️'],
+        correctAnswer: 'Cầu Vồng Lấp Lánh',
+        timeLimit: 20,
+        hint: 'Cầu vồng bắc ngang chân trời đẹp như tranh vẽ nha con!',
+        soundType: 'star',
+        emoji: '🌈'
+      },
+      {
+        question: 'Lá cây chuyển sang màu vàng đỏ và rụng nhiều vào mùa nào trong năm?',
+        options: ['Mùa Thu Êm Đềm', 'Mùa Hè', 'Mùa Xuân'],
+        optionEmojis: ['🍁', '🌴', '🌱'],
+        correctAnswer: 'Mùa Thu Êm Đềm',
+        timeLimit: 20,
+        hint: 'Gió thu heo may làm lá vàng bay xào xạc trên sân trường!',
+        soundType: 'bell',
+        emoji: '🍁'
+      },
+      {
+        question: 'Ban đêm trên bầu trời trong vắt, bé ngắm nhìn thấy gì tỏa sáng dịu hiền?',
+        options: ['Mặt Trăng & Ngôi Sao', 'Ông Mặt Trời', 'Đèn Giao Thông'],
+        optionEmojis: ['🌙', '☀️', '🚦'],
+        correctAnswer: 'Mặt Trăng & Ngôi Sao',
+        timeLimit: 20,
+        hint: 'Chị Hằng Nga và Chú Cuội ngồi bên gốc đa trên Cung Trăng nè!',
+        soundType: 'star',
+        emoji: '🌕'
+      },
+      {
+        question: 'Khi trời nắng gắt giữa trưa, bé đi ra sân trường cần đội mũ gì?',
+        options: ['Mũ Nón Rộng Vành', 'Đầu Trần Không Đội Mũ', 'Đeo Kính Bơi'],
+        optionEmojis: ['🧢', '👦', '🥽'],
+        correctAnswer: 'Mũ Nón Rộng Vành',
+        timeLimit: 20,
+        hint: 'Đội mũ che nắng bảo vệ đầu bé không bị say nắng nha!',
+        soundType: 'bell',
+        emoji: '👒'
+      }
+    ]
+  },
+
+  // 26. GAME GHÉP HÌNH: ĐỘNG VẬT BIỂN & THỦY CUNG DIỆU KỲ
+  {
+    id: 'game_ghephinh_sinh_vat_bien',
+    title: 'Ghép Hình Sinh Vật Biển Thủy Cung',
+    icon: '🐬',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Khám phá thế giới đại dương bao la: Cá heo nhảy múa, chú rùa biển bơi lội, sao biển 5 cánh!',
+    badgeTheme: 'cyan',
+    puzzlePairs: [
+      { id: 'p1', name: 'Bạn Cá Heo Thông Minh', symbol: '🐬', matchTarget: 'Vòng Tròn Xiếc Biển', targetSymbol: '⭕', hint: 'Cá heo thông minh nhảy qua vòng tròn reo vui chào các bé!' },
+      { id: 'p2', name: 'Bác Rùa Biển Hiền Từ', symbol: '🐢', matchTarget: 'Rạn San Hô Đầy Màu Sắc', targetSymbol: '🪸', hint: 'Bác rùa bơi chậm rãi qua những rạn san hô xinh đẹp!' },
+      { id: 'p3', name: 'Bé Bạch Tuộc 8 Râu', symbol: '🐙', matchTarget: 'Vỏ Ốc Biển Long Lanh', targetSymbol: '🐚', hint: 'Bạch tuộc tinh nghịch uốn lượn 8 chiếc xúc tu mềm mại!' },
+      { id: 'p4', name: 'Chú Cua Biển Ngang Tàng', symbol: '🦀', matchTarget: 'Bãi Cát Vàng Mịn', targetSymbol: '🏖️', hint: 'Cua có hai chiếc càng to bò ngang thoăn thoắt trên bãi cát!' },
+      { id: 'p5', name: 'Sao Biển 5 Cánh Xinh', symbol: '⭐', matchTarget: 'Đáy Đại Dương Xanh', targetSymbol: '🌊', hint: 'Sao biển nằm nghỉ ngơi dưới làn nước trong vắt mát rượi!' },
+      { id: 'p6', name: 'Cá Voi Khổng Lồ', symbol: '🐳', matchTarget: 'Cột Nước Phun Lên Trời', targetSymbol: '⛲', hint: 'Cá voi bơi lội thở phun cột nước cao vút lên bầu trời xanh!' }
     ]
   }
 ];

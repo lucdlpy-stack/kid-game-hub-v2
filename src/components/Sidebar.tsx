@@ -23,7 +23,7 @@ interface SidebarProps {
   onToggleSound: () => void;
   bgmActive: boolean;
   onToggleBgm: () => void;
-  onOpenArchitect: () => void;
+  onOpenLeaderboard: () => void;
   onOpenSync: () => void;
   onOpenAiDino: () => void;
   onOpenBadges: () => void;
@@ -34,6 +34,8 @@ interface SidebarProps {
   starsCount: number;
   hdmiMode: boolean;
   onToggleHdmiMode: () => void;
+  season: 'spring' | 'summer' | 'autumn' | 'winter' | 'starry';
+  onChangeSeason: (s: 'spring' | 'summer' | 'autumn' | 'winter' | 'starry') => void;
 }
 
 interface NavItem {
@@ -48,7 +50,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggleSound,
   bgmActive,
   onToggleBgm,
-  onOpenArchitect,
+  onOpenLeaderboard,
   onOpenSync,
   onOpenAiDino,
   onOpenBadges,
@@ -58,7 +60,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onBackToHub,
   starsCount,
   hdmiMode,
-  onToggleHdmiMode
+  onToggleHdmiMode,
+  season,
+  onChangeSeason
 }) => {
   const [isOpenMobile, setIsOpenMobile] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -122,7 +126,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="font-extrabold text-2xl tracking-tight text-amber-950">
-                  Kid Game Hub
+                  Thế giới trò chơi
                 </span>
               </div>
               <span className="text-[11px] font-black bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full inline-block mt-0.5">
@@ -220,6 +224,46 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
         {/* Bottom Section: Utility Tools (HDMI, AI Dino, Audio, Fullscreen) */}
         <div className="space-y-2 pt-4 border-t-2 border-amber-200 mt-4">
+          {/* Weather Season Selector Pill Box */}
+          <div className="p-2.5 bg-amber-50 rounded-2xl border-2 border-amber-200 space-y-1.5">
+            <div className="text-[11px] font-black text-amber-900 flex items-center justify-between">
+              <span>🌦️ Thời Tiết Bốn Mùa:</span>
+              <span className="text-[10px] font-bold text-amber-700">
+                {season === 'spring'
+                  ? '🌸 Hoa Đào'
+                  : season === 'summer'
+                  ? '☀️ Nắng Hè'
+                  : season === 'autumn'
+                  ? '🍁 Lá Vàng'
+                  : season === 'winter'
+                  ? '❄️ Tuyết Rơi'
+                  : '⭐ Mưa Sao'}
+              </span>
+            </div>
+            <div className="grid grid-cols-5 gap-1">
+              {[
+                { id: 'spring', label: '🌸', title: 'Mùa Xuân' },
+                { id: 'summer', label: '☀️', title: 'Mùa Hè' },
+                { id: 'autumn', label: '🍁', title: 'Mùa Thu' },
+                { id: 'winter', label: '❄️', title: 'Mùa Đông' },
+                { id: 'starry', label: '⭐', title: 'Mưa Sao' }
+              ].map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => onChangeSeason(s.id as any)}
+                  title={s.title}
+                  className={`py-1 rounded-xl text-base flex items-center justify-center transition-all cursor-pointer ${
+                    season === s.id
+                      ? 'bg-amber-400 text-amber-950 scale-110 shadow-xs ring-2 ring-amber-500'
+                      : 'bg-white hover:bg-amber-100 text-slate-700'
+                  }`}
+                >
+                  {s.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
           <div className="text-[11px] font-black uppercase text-slate-500 tracking-wider px-2">
             Tiện Ích Smart TV & Trợ Lý:
           </div>
@@ -278,9 +322,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   ? 'bg-indigo-100 text-indigo-800 border-indigo-300'
                   : 'bg-slate-100 text-slate-500 border-slate-300'
               }`}
+              title="Bật/Tắt nhạc nền mầm non 5 bài liên tục"
             >
               <Music className="w-4 h-4" />
-              <span>{bgmActive ? 'Nhạc: Bật' : 'Nhạc: Tắt'}</span>
+              <span>{bgmActive ? 'Nhạc: Bật 🎵' : 'Nhạc: Tắt'}</span>
             </button>
           </div>
 
@@ -299,13 +344,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
             <button
               onClick={() => {
-                onOpenArchitect();
+                onOpenLeaderboard();
                 setIsOpenMobile(false);
               }}
-              className="p-2 bg-orange-100 hover:bg-orange-200 text-orange-950 border border-orange-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1 cursor-pointer"
+              className="p-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-950 border border-yellow-300 rounded-xl font-bold text-xs flex items-center justify-center gap-1 cursor-pointer"
             >
-              <PlusCircle className="w-3.5 h-3.5" />
-              <span>Tạo Game</span>
+              <Award className="w-3.5 h-3.5 text-yellow-700" />
+              <span>Bảng Xếp Hạng</span>
             </button>
           </div>
 

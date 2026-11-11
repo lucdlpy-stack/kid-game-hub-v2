@@ -17,6 +17,106 @@ interface CharacterPersona {
 
 const CHARACTERS: CharacterPersona[] = [
   {
+    id: 'spiderman',
+    name: 'Người Nhện Siêu Đẳng',
+    icon: '🕸️',
+    hatEmoji: '🕷️',
+    badgeEmoji: '🕸️',
+    auraColor: 'from-rose-500/40 via-red-400/30 to-transparent',
+    soundPhrase: 'Ú òa! Bé đã hóa thân thành Người Nhện Siêu Đẳng bắng tơ bảo vệ phố phường!',
+    tagline: 'Bắn tơ dũng cảm, bảo vệ bạn bè!'
+  },
+  {
+    id: 'avenger',
+    name: 'Siêu Nhân Avengers',
+    icon: '🦸‍♂️',
+    hatEmoji: '🦸‍♂️',
+    badgeEmoji: '⚡',
+    auraColor: 'from-amber-400/40 via-yellow-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Bé biến hình thành Siêu Nhân Avengers sức mạnh vô song!',
+    tagline: 'Anh hùng dũng cảm bảo vệ vũ trụ!'
+  },
+  {
+    id: 'firefighter',
+    name: 'Lính Cứu Hỏa Dũng Cảm',
+    icon: '👨‍🚒',
+    hatEmoji: '⛑️',
+    badgeEmoji: '🚒',
+    auraColor: 'from-orange-500/40 via-amber-400/30 to-transparent',
+    soundPhrase: 'Ú òa! Bé là Chú Lính Cứu Hỏa 114 cầm vòi nước dập tắt lửa khẩn cấp!',
+    tagline: 'Dũng cảm, sẵn sàng dập lửa cứu người!'
+  },
+  {
+    id: 'police',
+    name: 'Cảnh Sát Trưởng 113',
+    icon: '👮',
+    hatEmoji: '👮',
+    badgeEmoji: '🚓',
+    auraColor: 'from-sky-500/40 via-blue-400/30 to-transparent',
+    soundPhrase: 'Ú òa! Bé hóa thân thành Cảnh Sát Trưởng giữ gìn trật tự an toàn!',
+    tagline: 'Giữ trật tự phố phường an toàn!'
+  },
+  {
+    id: 'doctor',
+    name: 'Bác Sĩ Tí Hon',
+    icon: '🩺',
+    hatEmoji: '🩺',
+    badgeEmoji: '🏥',
+    auraColor: 'from-emerald-400/40 via-teal-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Bác sĩ tí hon dùng ống nghe khám sức khỏe cho các bạn!',
+    tagline: 'Tận tâm chăm sóc sức khỏe cho mọi người!'
+  },
+  {
+    id: 'pilot',
+    name: 'Phi Công Vũ Trụ',
+    icon: '👨‍🚀',
+    hatEmoji: '🚀',
+    badgeEmoji: '🌟',
+    auraColor: 'from-indigo-500/40 via-purple-400/30 to-transparent',
+    soundPhrase: 'Ú òa! Bé làm Phi Công Vũ Trụ lái tên lửa bay vào ngân hà!',
+    tagline: 'Lái máy bay & tên lửa vút bay không gian!'
+  },
+  {
+    id: 'chef',
+    name: 'Đầu Bếp Nhí Tài Ba',
+    icon: '👨‍🍳',
+    hatEmoji: '👨‍🍳',
+    badgeEmoji: '🍳',
+    auraColor: 'from-amber-400/40 via-orange-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Đầu bếp nhí nấu những món ăn ngon thơm phức!',
+    tagline: 'Nấu món ăn ngon lành bổ dưỡng!'
+  },
+  {
+    id: 'electrician',
+    name: 'Thợ Điện Lực An Toàn',
+    icon: '⚡',
+    hatEmoji: '🦺',
+    badgeEmoji: '🔌',
+    auraColor: 'from-yellow-400/40 via-amber-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Chú thợ điện lực lắp đèn sáng lung linh cho mọi nhà!',
+    tagline: 'Sửa chữa điện sáng rực rỡ và an toàn!'
+  },
+  {
+    id: 'teacher',
+    name: 'Cô Giáo / Thầy Giáo Mầm Non',
+    icon: '👩‍🏫',
+    hatEmoji: '📚',
+    badgeEmoji: '✏️',
+    auraColor: 'from-pink-400/40 via-purple-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Cô giáo mầm non kể truyện cổ tích và dạy bé múa hát!',
+    tagline: 'Dạy bé múa hát và kể chuyện vui!'
+  },
+  {
+    id: 'princess',
+    name: 'Công Chúa Lộng Lẫy',
+    icon: '👑',
+    hatEmoji: '👑',
+    badgeEmoji: '🌸',
+    auraColor: 'from-pink-500/40 via-rose-300/30 to-transparent',
+    soundPhrase: 'Ú òa! Công Chúa Lộng Lẫy xinh đẹp nhất thế giới mầm non!',
+    tagline: 'Xinh xắn, rực rỡ và tỏa sáng!'
+  },
+  {
     id: 'dino',
     name: 'Khủng Long Dino',
     icon: '🦖',
@@ -35,36 +135,6 @@ const CHARACTERS: CharacterPersona[] = [
     auraColor: 'from-amber-400/40 via-orange-300/30 to-transparent',
     soundPhrase: 'Ú òa! Bé đã hóa thân thành Chú Hổ Vàng siêu nhanh nhẹn!',
     tagline: 'Chạy nhanh vèo vèo rực rỡ!'
-  },
-  {
-    id: 'hero',
-    name: 'Siêu Nhân Cầu Vồng',
-    icon: '🦸‍♂️',
-    hatEmoji: '🦸‍♂️',
-    badgeEmoji: '⭐',
-    auraColor: 'from-sky-400/40 via-indigo-300/30 to-transparent',
-    soundPhrase: 'Ú òa! Bé là Siêu Nhân Cầu Vồng bảo vệ thế giới!',
-    tagline: 'Bảo vệ hòa bình thế giới mầm non!'
-  },
-  {
-    id: 'princess',
-    name: 'Công Chúa Hoa Cúc',
-    icon: '👑',
-    hatEmoji: '👑',
-    badgeEmoji: '🌸',
-    auraColor: 'from-pink-400/40 via-rose-300/30 to-transparent',
-    soundPhrase: 'Ú òa! Công Chúa Hoa Cúc xinh đẹp nhất thế giới mầm non!',
-    tagline: 'Xinh xắn, rực rỡ và tỏa sáng!'
-  },
-  {
-    id: 'panda',
-    name: 'Gấu Trúc Kungfu',
-    icon: '🐼',
-    hatEmoji: '🐼',
-    badgeEmoji: '🎋',
-    auraColor: 'from-cyan-400/40 via-teal-300/30 to-transparent',
-    soundPhrase: 'Ú òa! Bé là Gấu Trúc Kungfu nhún nhảy siêu đáng yêu!',
-    tagline: 'Vui vẻ, tròn xoe và giỏi võ!'
   }
 ];
 

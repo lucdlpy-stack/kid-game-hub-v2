@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center gap-1.5">
                 <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-amber-900">
-                  Kid Game Hub
+                  Thế giới trò chơi
                 </span>
                 <span className="text-xs bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">
                   3-5 Tuổi

@@ -20,7 +20,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   onOpenBadges
 }) => {
   const handleWelcomeSpeech = () => {
-    speakVietnamese('Chào mừng các bé yêu đến với Kid Game Hub! Chúng mình cùng chơi đố vui, ghép hình và nhận huy hiệu thành tựu nhé!');
+    speakVietnamese('Chào mừng các bé yêu đến với Thế giới trò chơi! Chúng mình cùng chơi đố vui, ghép hình và nhận huy hiệu thành tựu nhé!');
   };
 
   return (

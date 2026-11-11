@@ -52,12 +52,26 @@ function getFallbackEmoji(optionText: string, idx: number): string {
   return defaults[idx % defaults.length];
 }
 
+// Fisher-Yates Shuffle helper function
+function shuffleQuestions<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export const QuizGameView: React.FC<QuizGameViewProps> = ({
   game,
   onExit,
   onRewardStar,
   soundEnabled
 }) => {
+  // Randomize questions for each player session so no two plays are identical
+  const [questions, setQuestions] = useState<QuizQuestion[]>(() =>
+    shuffleQuestions(game.interactiveQuestions)
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answerState, setAnswerState] = useState<'idle' | 'correct' | 'wrong'>('idle');
@@ -66,7 +80,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
   const [isCompleted, setIsCompleted] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
 
-  const currentQ: QuizQuestion = game.interactiveQuestions[currentIndex];
+  const currentQ: QuizQuestion = questions[currentIndex] || questions[0];
 
   // Auto-speak question when question changes
   useEffect(() => {
@@ -151,7 +165,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
       recordBadgeProgress('quiz', 1);
 
       setTimeout(() => {
-        if (currentIndex < game.interactiveQuestions.length - 1) {
+        if (currentIndex < questions.length - 1) {
           setCurrentIndex((prev) => prev + 1);
         } else {
           setIsCompleted(true);
@@ -185,6 +199,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
   };
 
   const handleRestart = () => {
+    setQuestions(shuffleQuestions(game.interactiveQuestions));
     setCurrentIndex(0);
     setCorrectCount(0);
     setIsCompleted(false);

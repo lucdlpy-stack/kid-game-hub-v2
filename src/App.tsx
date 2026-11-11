@@ -22,12 +22,14 @@ import { PetRacerGameView } from './components/PetRacerGameView';
 import { MusicPianoView } from './components/MusicPianoView';
 import { ActionWheelView } from './components/ActionWheelView';
 import { TvRemoteOverlay } from './components/TvRemoteOverlay';
-import { GameArchitectModal } from './components/GameArchitectModal';
 import { TvSyncModal } from './components/TvSyncModal';
 import { AiDinoChatModal } from './components/AiDinoChatModal';
 import { BadgesModal } from './components/BadgesModal';
+import { LeaderboardModal } from './components/LeaderboardModal';
+import { CelebrationOverlay } from './components/CelebrationOverlay';
+import { WeatherOverlay, WeatherSeason } from './components/WeatherOverlay';
 import { toggleBgm, playClickSound } from './utils/audio';
-import { MonitorPlay, Sparkles } from 'lucide-react';
+import { MonitorPlay, Sparkles, Award } from 'lucide-react';
 
 export default function App() {
   const [games, setGames] = useState<Game[]>(() => getAllGames());
@@ -36,6 +38,7 @@ export default function App() {
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
   const [bgmActive, setBgmActive] = useState<boolean>(false);
   const [hdmiMode, setHdmiMode] = useState<boolean>(false);
+  const [season, setSeason] = useState<WeatherSeason>('autumn');
   const [starsCount, setStarsCount] = useState<number>(() => {
     try {
       const saved = localStorage.getItem('kid_stars_count');
@@ -50,12 +53,25 @@ export default function App() {
   const [showTvRemote, setShowTvRemote] = useState<boolean>(false);
 
   // Modals
-  const [showArchitectModal, setShowArchitectModal] = useState<boolean>(false);
   const [showTvSyncModal, setShowTvSyncModal] = useState<boolean>(false);
   const [showAiDinoModal, setShowAiDinoModal] = useState<boolean>(false);
   const [showBadgesModal, setShowBadgesModal] = useState<boolean>(false);
+  const [showLeaderboardModal, setShowLeaderboardModal] = useState<boolean>(false);
 
-  // Listen for games pushed via push_game_to_github or BroadcastChannel
+  // Celebration Fireworks / Star Rain state
+  const [celebrationData, setCelebrationData] = useState<{
+    show: boolean;
+    score: number;
+    stars: number;
+    gameTitle: string;
+  }>({
+    show: false,
+    score: 850,
+    stars: 10,
+    gameTitle: ''
+  });
+
+  // Listen for games synced
   useEffect(() => {
     const handleSync = () => {
       setGames(getAllGames());
@@ -65,7 +81,7 @@ export default function App() {
     return () => window.removeEventListener('kid-game-hub-updated', handleSync);
   }, []);
 
-  // Save stars & record badge progress for stars collector
+  // Save stars & record badge progress
   const handleRewardStar = () => {
     setStarsCount((prev) => {
       const next = prev + 1;
@@ -95,9 +111,21 @@ export default function App() {
     return g.gameType === activeFilter;
   });
 
+  // Trigger Fireworks Celebration
+  const triggerCelebration = (score = 900, stars = 10) => {
+    if (activeGame) {
+      setCelebrationData({
+        show: true,
+        score,
+        stars,
+        gameTitle: activeGame.title
+      });
+    }
+  };
+
   // Handle Smart TV keyboard navigation when on hub screen
   useEffect(() => {
-    if (activeGame !== null || showArchitectModal || showTvSyncModal || showAiDinoModal || showBadgesModal) return;
+    if (activeGame !== null || showTvSyncModal || showAiDinoModal || showBadgesModal || showLeaderboardModal) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (filteredGames.length === 0) return;
@@ -124,7 +152,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeGame, filteredGames, focusedCardIdx, showArchitectModal, showTvSyncModal, showAiDinoModal, showBadgesModal]);
+  }, [activeGame, filteredGames, focusedCardIdx, showTvSyncModal, showAiDinoModal, showBadgesModal, showLeaderboardModal]);
 
   // TV Remote software callbacks
   const handleRemoteNavigate = (direction: 'up' | 'down' | 'left' | 'right') => {
@@ -259,13 +287,16 @@ export default function App() {
         hdmiMode ? 'text-lg' : ''
       }`}
     >
+      {/* Dynamic Seasonal Weather Overlay Animation */}
+      <WeatherOverlay season={season} />
+
       {/* 1. FIXED VERTICAL SIDEBAR ON THE LEFT */}
       <Sidebar
         soundEnabled={soundEnabled}
         onToggleSound={() => setSoundEnabled((prev) => !prev)}
         bgmActive={bgmActive}
         onToggleBgm={handleToggleBgm}
-        onOpenArchitect={() => setShowArchitectModal(true)}
+        onOpenLeaderboard={() => setShowLeaderboardModal(true)}
         onOpenSync={() => setShowTvSyncModal(true)}
         onOpenAiDino={() => setShowAiDinoModal(true)}
         onOpenBadges={() => setShowBadgesModal(true)}
@@ -282,6 +313,11 @@ export default function App() {
         onToggleHdmiMode={() => {
           playClickSound();
           setHdmiMode((prev) => !prev);
+        }}
+        season={season}
+        onChangeSeason={(s) => {
+          playClickSound();
+          setSeason(s);
         }}
       />
 
@@ -312,7 +348,7 @@ export default function App() {
           {activeGame ? (
             renderGameView()
           ) : (
-            // Main Kid Game Hub Screen
+            // Main Screen
             <div>
               {/* Mascot & Welcome Banner - Mascot avatar opens Badges Modal */}
               <HeroBanner
@@ -328,7 +364,7 @@ export default function App() {
                 onOpenBadges={() => setShowBadgesModal(true)}
               />
 
-              {/* Section Heading & Quick AI trigger */}
+              {/* Section Heading & Quick triggers */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2">
@@ -338,17 +374,25 @@ export default function App() {
                     </span>
                   </h2>
                   <p className="text-xs sm:text-sm font-bold text-slate-600">
-                    Bấm vào ảnh đại diện bé để xem Bảng Huy Hiệu Thành Tựu Nhỏ 🏆!
+                    Bấm vào ảnh đại diện bé để xem Bảng Huy Hiệu Thành Tựu Nhỏ 🏆 hoặc Bảng Xếp Hạng Siêu Nhí 📸!
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
+                    onClick={() => setShowLeaderboardModal(true)}
+                    className="px-3.5 py-2 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-amber-950 font-black text-xs sm:text-sm rounded-2xl shadow-sm transition-transform active:scale-95 cursor-pointer flex items-center gap-1.5"
+                  >
+                    <Award className="w-4 h-4 text-amber-950" />
+                    <span>Bảng Xếp Hạng 📸</span>
+                  </button>
+
+                  <button
                     onClick={() => setShowBadgesModal(true)}
                     className="px-3.5 py-2 bg-yellow-100 hover:bg-yellow-200 border-2 border-yellow-400 text-yellow-950 font-black text-xs sm:text-sm rounded-2xl shadow-sm transition-transform active:scale-95 cursor-pointer flex items-center gap-1.5"
                   >
                     <span>🏆</span>
-                    <span>Huy Hiệu Của Bé</span>
+                    <span>Huy Hiệu Bé</span>
                   </button>
 
                   <button
@@ -356,7 +400,7 @@ export default function App() {
                     className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs sm:text-sm rounded-2xl shadow-sm hover:scale-105 transition-transform cursor-pointer flex items-center gap-1.5"
                   >
                     <Sparkles className="w-4 h-4 text-yellow-300 animate-spin" />
-                    <span>Dino Tạo Game (AI)</span>
+                    <span>Dino (AI)</span>
                   </button>
                 </div>
               </div>
@@ -381,12 +425,12 @@ export default function App() {
           <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
             <div className="flex items-center gap-2 text-amber-900">
               <span>🌟</span>
-              <span className="font-extrabold">Kid Game Hub</span>
+              <span className="font-extrabold">Thế giới trò chơi</span>
               <span>·</span>
               <span>Ứng dụng giáo dục mầm non tương tác cao, kết nối Smart TV & HDMI</span>
             </div>
             <div className="text-slate-500 text-[11px]">
-              Tối ưu hóa 60FPS · Hệ thống Thành Tựu Nhỏ (Badges) · Âm thanh sống động
+              Tối ưu hóa 60FPS · Hệ thống Thành Tựu Nhỏ & Bảng Xếp Hạng · Âm thanh rực rỡ
             </div>
           </div>
         </footer>
@@ -403,15 +447,31 @@ export default function App() {
         />
       )}
 
-      {/* 5. Modals */}
-      {showArchitectModal && (
-        <GameArchitectModal
-          onClose={() => setShowArchitectModal(false)}
-          onGameAdded={(newGame) => {
-            setGames(getAllGames());
-            setActiveGame(newGame);
-            setShowArchitectModal(false);
+      {/* 5. Celebration Fireworks Overlay */}
+      {celebrationData.show && (
+        <CelebrationOverlay
+          score={celebrationData.score}
+          starsEarned={celebrationData.stars}
+          gameTitle={celebrationData.gameTitle}
+          onClose={() => setCelebrationData((prev) => ({ ...prev, show: false }))}
+          onRestart={() => {
+            setCelebrationData((prev) => ({ ...prev, show: false }));
           }}
+          onOpenLeaderboardWithSnapshot={() => {
+            setCelebrationData((prev) => ({ ...prev, show: false }));
+            setShowLeaderboardModal(true);
+          }}
+        />
+      )}
+
+      {/* 6. Modals */}
+      {showLeaderboardModal && (
+        <LeaderboardModal
+          isOpen={showLeaderboardModal}
+          onClose={() => setShowLeaderboardModal(false)}
+          latestScore={celebrationData.score || 950}
+          latestStars={celebrationData.stars || 15}
+          gameTitle={activeGame ? activeGame.title : 'Thế giới trò chơi'}
         />
       )}
 

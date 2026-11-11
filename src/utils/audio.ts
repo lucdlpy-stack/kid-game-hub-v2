@@ -45,6 +45,14 @@ export function playCorrectSound() {
   }
 }
 
+export function playCorrectPopSound() {
+  playCorrectSound();
+}
+
+export function playWinCelebrationAudio() {
+  playVictoryFanfare();
+}
+
 /** Gentle, comic "boing" wobble for wrong attempts (non-scary for 3-5yo) */
 export function playWrongSound() {
   try {
@@ -177,7 +185,11 @@ export function playSpecialSound(type: string) {
   }
 }
 
-/** Vietnamese Text-To-Speech for young learners (Ages 3-5) */
+/** 
+ * Vietnamese Text-To-Speech for young learners (Ages 3-5)
+ * Crafted in the warm, melodic, gentle Central Vietnamese teacher persona:
+ * 'Cô giáo miền Trung ngọt ngào, dịu dàng, ấm áp, thân thiện và gần gũi với các bé'
+ */
 export function speakVietnamese(text: string, onEnd?: () => void) {
   if (!('speechSynthesis' in window)) {
     if (onEnd) onEnd();
@@ -186,15 +198,42 @@ export function speakVietnamese(text: string, onEnd?: () => void) {
 
   try {
     window.speechSynthesis.cancel(); // Stop any pending speech
-    const utterance = new SpeechSynthesisUtterance(text);
+
+    // Natural Central Vietnamese teacher phrasing inflection
+    // Softens rigid sentences into tender preschool teacher speech
+    let teacherText = text;
+    // Add warm teacher intonation markers if missing
+    if (!teacherText.includes('nhen') && !teacherText.includes('nè') && !teacherText.includes('nha')) {
+      if (teacherText.endsWith('.')) {
+        teacherText = teacherText.slice(0, -1) + ' nha các con!';
+      } else if (teacherText.endsWith('!')) {
+        teacherText = teacherText.replace(/!+$/, ' nè con ơi!');
+      }
+    }
+
+    const utterance = new SpeechSynthesisUtterance(teacherText);
     utterance.lang = 'vi-VN';
-    utterance.rate = 0.9; // Slightly slower for preschoolers
-    utterance.pitch = 1.15; // Friendly, cheerful higher pitch
+    
+    // Vocal characteristics for Central Vietnamese teacher:
+    // Slightly tender tempo (0.86) + melodious gentle pitch (1.06) + soft volume
+    utterance.rate = 0.86; 
+    utterance.pitch = 1.06;
+    utterance.volume = 0.95;
 
     const voices = window.speechSynthesis.getVoices();
-    const viVoice = voices.find((v) => v.lang.startsWith('vi'));
-    if (viVoice) {
-      utterance.voice = viVoice;
+    // Prioritize natural Vietnamese voices (Google Tiếng Việt, Microsoft HoaiMy, Linh, or Apple Linh/Mai)
+    const naturalVoice = voices.find(
+      (v) =>
+        v.lang.startsWith('vi') &&
+        (v.name.toLowerCase().includes('natural') ||
+          v.name.toLowerCase().includes('hoaimy') ||
+          v.name.toLowerCase().includes('linh') ||
+          v.name.toLowerCase().includes('google') ||
+          v.name.toLowerCase().includes('female'))
+    ) || voices.find((v) => v.lang.startsWith('vi'));
+
+    if (naturalVoice) {
+      utterance.voice = naturalVoice;
     }
 
     if (onEnd) {
@@ -209,9 +248,86 @@ export function speakVietnamese(text: string, onEnd?: () => void) {
   }
 }
 
-/** Synthesized Lullaby / Happy BGM player */
+/** 
+ * Multi-Song Nursery BGM Playlist Engine
+ * Rotates continuously across 5 beloved cheerful preschool melodies:
+ * 1. Chú Ếch Con (Little Frog)
+ * 2. Cả Nhà Thương Nhau (Family Love)
+ * 3. Cháu Lên Ba (Three-Year-Old Child)
+ * 4. Kìa Con Bướm Vàng (Golden Butterfly / Frère Jacques)
+ * 5. Bắc Kim Thang (Traditional Folk Rhyme)
+ */
+interface BGMTrack {
+  id: string;
+  title: string;
+  tempoMs: number;
+  notes: { f: number; d: number }[]; // frequency and duration
+}
+
+const BGM_PLAYLIST: BGMTrack[] = [
+  // Track 1: Chú Ếch Con
+  {
+    id: 'ech_con',
+    title: 'Chú Ếch Con Vui Vẻ 🐸',
+    tempoMs: 380,
+    notes: [
+      { f: 523.25, d: 0.3 }, { f: 587.33, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 523.25, d: 0.3 },
+      { f: 659.25, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 783.99, d: 0.5 }, { f: 659.25, d: 0.3 },
+      { f: 587.33, d: 0.3 }, { f: 523.25, d: 0.3 }, { f: 587.33, d: 0.5 }, { f: 523.25, d: 0.6 }
+    ]
+  },
+  // Track 2: Cả Nhà Thương Nhau
+  {
+    id: 'ca_nha',
+    title: 'Cả Nhà Thương Nhau 👨‍👩‍👧',
+    tempoMs: 440,
+    notes: [
+      { f: 523.25, d: 0.4 }, { f: 659.25, d: 0.4 }, { f: 783.99, d: 0.4 }, { f: 880.00, d: 0.4 },
+      { f: 783.99, d: 0.4 }, { f: 659.25, d: 0.4 }, { f: 587.33, d: 0.6 }, { f: 523.25, d: 0.4 },
+      { f: 659.25, d: 0.4 }, { f: 783.99, d: 0.4 }, { f: 587.33, d: 0.4 }, { f: 523.25, d: 0.8 }
+    ]
+  },
+  // Track 3: Kìa Con Bướm Vàng
+  {
+    id: 'buom_vang',
+    title: 'Kìa Con Bướm Vàng 🦋',
+    tempoMs: 400,
+    notes: [
+      { f: 523.25, d: 0.35 }, { f: 587.33, d: 0.35 }, { f: 659.25, d: 0.35 }, { f: 523.25, d: 0.35 },
+      { f: 523.25, d: 0.35 }, { f: 587.33, d: 0.35 }, { f: 659.25, d: 0.35 }, { f: 523.25, d: 0.35 },
+      { f: 659.25, d: 0.35 }, { f: 698.46, d: 0.35 }, { f: 783.99, d: 0.7 },
+      { f: 659.25, d: 0.35 }, { f: 698.46, d: 0.35 }, { f: 783.99, d: 0.7 }
+    ]
+  },
+  // Track 4: Cháu Lên Ba
+  {
+    id: 'chau_len_ba',
+    title: 'Cháu Lên Ba Cháu Đi Mẫu Giáo 🎒',
+    tempoMs: 420,
+    notes: [
+      { f: 659.25, d: 0.35 }, { f: 587.33, d: 0.35 }, { f: 523.25, d: 0.35 }, { f: 587.33, d: 0.35 },
+      { f: 659.25, d: 0.35 }, { f: 659.25, d: 0.35 }, { f: 659.25, d: 0.7 },
+      { f: 587.33, d: 0.35 }, { f: 587.33, d: 0.35 }, { f: 587.33, d: 0.7 },
+      { f: 659.25, d: 0.35 }, { f: 783.99, d: 0.35 }, { f: 783.99, d: 0.7 }
+    ]
+  },
+  // Track 5: Bắc Kim Thang
+  {
+    id: 'bac_kim_thang',
+    title: 'Bắc Kim Thang Cà Rốt Cà Chua 🥕',
+    tempoMs: 360,
+    notes: [
+      { f: 783.99, d: 0.3 }, { f: 783.99, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 783.99, d: 0.3 },
+      { f: 880.00, d: 0.3 }, { f: 783.99, d: 0.3 }, { f: 659.25, d: 0.5 }, { f: 587.33, d: 0.3 },
+      { f: 523.25, d: 0.3 }, { f: 587.33, d: 0.3 }, { f: 659.25, d: 0.3 }, { f: 523.25, d: 0.6 }
+    ]
+  }
+];
+
 let bgmInterval: number | null = null;
 let isBgmPlaying = false;
+let currentTrackIndex = 0;
+let currentNoteIndex = 0;
 
 export function toggleBgm(): boolean {
   if (isBgmPlaying) {
@@ -223,43 +339,59 @@ export function toggleBgm(): boolean {
   }
 }
 
+export function getCurrentBgmTrackTitle(): string {
+  return BGM_PLAYLIST[currentTrackIndex]?.title || 'Nhạc Vui Mầm Non';
+}
+
 export function startBgm() {
   if (isBgmPlaying) return;
   isBgmPlaying = true;
   const ctx = getAudioContext();
 
-  // Playful pentatonic notes
-  const notes = [392.00, 440.00, 523.25, 587.33, 659.25, 587.33, 523.25, 440.00];
-  let noteIndex = 0;
-
   const playStep = () => {
     if (!isBgmPlaying) return;
     try {
+      const currentTrack = BGM_PLAYLIST[currentTrackIndex];
+      const note = currentTrack.notes[currentNoteIndex];
       const now = ctx.currentTime;
+
+      // Soft marimba-like bell tone for young toddlers
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(notes[noteIndex], now);
+      osc.frequency.setValueAtTime(note.f, now);
 
       gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.04, now + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      gain.gain.linearRampToValueAtTime(0.045, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + note.d);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.4);
+      osc.stop(now + note.d);
 
-      noteIndex = (noteIndex + 1) % notes.length;
+      currentNoteIndex++;
+      if (currentNoteIndex >= currentTrack.notes.length) {
+        // Move to the NEXT song in playlist for endless alternating enjoyment!
+        currentNoteIndex = 0;
+        currentTrackIndex = (currentTrackIndex + 1) % BGM_PLAYLIST.length;
+      }
     } catch {
-      // Audio might be waiting for user gesture
+      // Audio waiting for user gesture
     }
   };
 
   playStep();
-  bgmInterval = window.setInterval(playStep, 600);
+  // Continuous rhythm loop
+  bgmInterval = window.setInterval(playStep, 450);
+}
+
+export function nextBgmTrack(): string {
+  currentTrackIndex = (currentTrackIndex + 1) % BGM_PLAYLIST.length;
+  currentNoteIndex = 0;
+  return getCurrentBgmTrackTitle();
 }
 
 export function stopBgm() {
