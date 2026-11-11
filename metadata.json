@@ -1,6 +1,6 @@
 {
   "name": "Kid Game Hub - Trò Chơi Mầm Non 3-5 Tuổi",
   "description": "Ứng dụng thế giới trò chơi mầm non hoạt hình sinh động cho trẻ 3-5 tuổi với kho đố vui, ghép hình âm thanh và hỗ trợ Smart TV.",
-  "requestFramePermissions": [],
+  "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

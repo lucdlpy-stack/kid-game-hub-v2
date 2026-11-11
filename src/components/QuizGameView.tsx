@@ -9,13 +9,47 @@ import {
   playSpecialSound,
   speakVietnamese
 } from '../utils/audio';
-import { Volume2, ArrowLeft, RotateCcw, Award, CheckCircle2, XCircle, HelpCircle } from 'lucide-react';
+import { Volume2, ArrowLeft, RotateCcw, Award, CheckCircle2, XCircle, HelpCircle, Sparkles } from 'lucide-react';
 
 interface QuizGameViewProps {
   game: QuizGame;
   onExit: () => void;
   onRewardStar: () => void;
   soundEnabled: boolean;
+}
+
+// Map common toddler words to colorful visual emojis if not explicitly in optionEmojis
+function getFallbackEmoji(optionText: string, idx: number): string {
+  const lower = optionText.toLowerCase();
+  if (lower.includes('chó') || lower.includes('cún')) return '🐶';
+  if (lower.includes('mèo')) return '🐱';
+  if (lower.includes('gà')) return '🐓';
+  if (lower.includes('voi')) return '🐘';
+  if (lower.includes('thỏ')) return '🐰';
+  if (lower.includes('sư tử')) return '🦁';
+  if (lower.includes('hươu')) return '🦒';
+  if (lower.includes('vịt')) return '🦆';
+  if (lower.includes('cứu hỏa')) return '🚒';
+  if (lower.includes('cứu thương')) return '🚑';
+  if (lower.includes('máy bay')) return '✈️';
+  if (lower.includes('đạp')) return '🚲';
+  if (lower.includes('tàu')) return '🚂';
+  if (lower.includes('buýt')) return '🚌';
+  if (lower.includes('đèn') || lower.includes('dừng')) return '🛑';
+  if (lower.includes('đỏ')) return '🔴';
+  if (lower.includes('xanh')) return '🟢';
+  if (lower.includes('tròn')) return '🟡';
+  if (lower.includes('vuông')) return '🟩';
+  if (lower.includes('tam giác')) return '🔺';
+  if (lower.includes('dưa hấu')) return '🍉';
+  if (lower.includes('chuối')) return '🍌';
+  if (lower.includes('cam')) return '🍊';
+  if (lower.includes('dâu')) return '🍓';
+  if (lower.includes('táo')) return '🍎';
+  if (lower.includes('nho')) return '🍇';
+  if (lower.includes('cá')) return '🐟';
+  const defaults = ['🌟', '🎯', '🎈', '🎨'];
+  return defaults[idx % defaults.length];
 }
 
 export const QuizGameView: React.FC<QuizGameViewProps> = ({
@@ -46,7 +80,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
     }
   }, [currentIndex, currentQ, soundEnabled]);
 
-  // Keyboard navigation for Smart TV Remote (Arrow Left/Right/Up/Down, Enter, 1-3)
+  // Keyboard navigation for Smart TV Remote (Arrow Left/Right/Up/Down, Enter, 1-4)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isCompleted) {
@@ -106,12 +140,12 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
 
       // Confetti burst
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 90,
+        spread: 75,
         origin: { y: 0.6 }
       });
 
-      speakVietnamese('Hoan hô bé! Bé giỏi quá, đáp án chính xác!');
+      speakVietnamese(`Đúng rồi! Hoan hô bé! Bé chọn ${option} thật chính xác!`);
       onRewardStar();
       setCorrectCount((prev) => prev + 1);
 
@@ -125,7 +159,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
             playVictoryFanfare();
           }
           confetti({
-            particleCount: 150,
+            particleCount: 160,
             spread: 100,
             origin: { y: 0.5 }
           });
@@ -140,10 +174,10 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
       speakVietnamese('Chưa đúng rồi! Bé thử chọn lại nhé!');
       setShowHint(true);
 
-      // Reset after 1s so child can try again
+      // Reset after 1s so child can try again smoothly without freezing
       setTimeout(() => {
         setAnswerState('idle');
-      }, 1100);
+      }, 1000);
     }
   };
 
@@ -166,7 +200,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
     return (
       <div className="max-w-4xl mx-auto py-8 px-4 text-center">
         <div className="bg-gradient-to-b from-amber-100 via-orange-50 to-white rounded-3xl p-8 sm:p-12 border-4 border-amber-300 shadow-2xl">
-          <div className="text-7xl sm:text-8xl mb-4 animate-bounce">🏆</div>
+          <div className="text-7xl sm:text-8xl mb-4 animate-bounce">🏆⭐</div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-amber-950 mb-3 tracking-tight">
             Chúc Mừng Bé Xuất Sắc!
@@ -206,19 +240,19 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-4 px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
       {/* Top Game Bar */}
-      <div className="flex items-center justify-between gap-4 mb-6">
+      <div className="flex items-center justify-between gap-4 mb-4">
         <button
           onClick={onExit}
-          className="flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-amber-50 text-amber-900 border-2 border-amber-300 rounded-2xl font-extrabold text-sm sm:text-base shadow-sm transition-all cursor-pointer tv-focus-ring"
+          className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-amber-50 text-amber-900 border-2 border-amber-300 rounded-2xl font-black text-sm sm:text-base shadow-sm transition-all cursor-pointer tv-focus-ring"
         >
           <ArrowLeft className="w-5 h-5 text-amber-700" />
           <span>Về Kho Game</span>
         </button>
 
         {/* Progress Stars */}
-        <div className="flex items-center gap-1.5 px-4 py-2 bg-white/90 border-2 border-amber-200 rounded-2xl shadow-sm">
+        <div className="flex items-center gap-2 px-4 py-2 bg-white/95 border-2 border-amber-200 rounded-2xl shadow-sm">
           <span className="text-sm font-black text-slate-700 mr-2">
             Câu {currentIndex + 1} / {game.interactiveQuestions.length}
           </span>
@@ -226,11 +260,11 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
             {game.interactiveQuestions.map((_, idx) => (
               <span
                 key={idx}
-                className={`text-lg transition-transform ${
+                className={`text-xl transition-transform ${
                   idx < currentIndex
                     ? 'text-yellow-400 scale-110'
                     : idx === currentIndex
-                    ? 'text-orange-500 animate-pulse'
+                    ? 'text-orange-500 animate-pulse text-2xl'
                     : 'text-slate-300'
                 }`}
               >
@@ -241,48 +275,48 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         </div>
       </div>
 
-      {/* Main Question Card - Giant visual for TV */}
-      <div className="bg-gradient-to-b from-white via-amber-50/50 to-orange-50/40 rounded-3xl p-6 sm:p-10 border-4 border-amber-300 shadow-xl mb-6 text-center relative overflow-hidden">
-        {/* Large Emoji Badge */}
-        {currentQ.emoji && (
-          <div className="w-24 h-24 sm:w-28 sm:h-28 mx-auto mb-4 bg-white rounded-3xl border-3 border-amber-300 shadow-md flex items-center justify-center text-5xl sm:text-6xl animate-float-slow">
-            {currentQ.emoji}
+      {/* Main Question Card - Visual Spotlight for Preschoolers */}
+      <div className="bg-gradient-to-b from-white via-amber-50/60 to-orange-50/50 rounded-3xl p-5 sm:p-8 border-4 border-amber-300 shadow-xl mb-6 text-center relative overflow-hidden">
+        {/* Large Visual Mascot / Question Emoji Spotlight */}
+        <div className="flex items-center justify-center gap-4 mb-3">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-amber-200 to-orange-200 rounded-3xl border-3 border-amber-400 shadow-md flex items-center justify-center text-5xl sm:text-6xl animate-bounce">
+            {currentQ.emoji || '❓'}
           </div>
-        )}
+        </div>
 
         {/* Question Text */}
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-snug mb-4">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-snug mb-3">
           {currentQ.question}
         </h2>
 
         {/* Voice Read Button for 3-5yo kids */}
-        <div className="flex justify-center mb-2">
+        <div className="flex justify-center mb-1">
           <button
             onClick={handleReadQuestion}
             className="px-5 py-2.5 bg-amber-200 hover:bg-amber-300 text-amber-950 font-black text-sm sm:text-base rounded-2xl border-2 border-amber-400 shadow-sm flex items-center gap-2 cursor-pointer hover:scale-105 active:scale-95 transition-all tv-focus-ring"
           >
             <Volume2 className="w-5 h-5 text-amber-800" />
-            <span>Nghe Cô Đọc Lại Câu Hỏi</span>
+            <span>Bé Bấm Để Nghe Cô Đọc Lại</span>
           </button>
         </div>
 
         {/* Hint Box if user got wrong */}
         {showHint && currentQ.hint && (
-          <div className="mt-4 p-4 bg-amber-100/90 border-2 border-amber-400 rounded-2xl text-amber-950 font-extrabold text-base flex items-center justify-center gap-2 animate-bounce">
+          <div className="mt-3 p-3 bg-amber-100 border-2 border-amber-400 rounded-2xl text-amber-950 font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 animate-bounce">
             <HelpCircle className="w-5 h-5 text-amber-700 shrink-0" />
             <span>Gợi ý cho bé: {currentQ.hint}</span>
           </div>
         )}
       </div>
 
-      {/* Giant Answer Options - Smart TV Ergonomics */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6">
+      {/* 100% VISUAL ANSWER CHOICES - Huge Cartoon Badges with Picture-First UX */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
         {currentQ.options.map((option, idx) => {
           const isSelected = selectedOption === option;
-          const isCorrectChoice = option === currentQ.correctAnswer;
+          const visualEmoji = currentQ.optionEmojis?.[idx] || getFallbackEmoji(option, idx);
 
           let cardStyle =
-            'bg-white hover:bg-amber-50/90 border-slate-300 hover:border-amber-400 text-slate-900 shadow-md hover:shadow-lg';
+            'bg-white hover:bg-amber-50 border-slate-300 hover:border-amber-400 text-slate-900 shadow-md hover:shadow-xl';
 
           if (isSelected) {
             if (answerState === 'correct') {
@@ -303,29 +337,37 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
               key={idx}
               type="button"
               onClick={() => handleOptionSelect(option)}
-              className={`relative min-h-[90px] sm:min-h-[120px] p-5 rounded-3xl border-4 font-black text-xl sm:text-2xl flex flex-col items-center justify-center gap-2 transition-all cursor-pointer ${cardStyle} ${
+              className={`relative min-h-[140px] sm:min-h-[180px] p-5 rounded-3xl border-4 font-black flex flex-col items-center justify-center gap-2 transition-all cursor-pointer ${cardStyle} ${
                 isFocused ? 'tv-focused' : ''
               } tv-focus-ring`}
             >
-              {/* Option Number Tag for TV remote shortcut */}
-              <span className="absolute top-3 left-4 text-xs font-black px-2 py-0.5 rounded-full bg-black/10">
+              {/* Remote TV Shortcut Pill */}
+              <span className="absolute top-3 left-4 text-[11px] font-black px-2.5 py-0.5 rounded-full bg-black/10">
                 Phím {idx + 1}
               </span>
 
-              <span className="text-center px-2">{option}</span>
+              {/* HUGE VISUAL GRAPHIC FOR TODDLERS */}
+              <div className="text-5xl sm:text-6xl my-1 animate-pulse-subtle filter drop-shadow">
+                {visualEmoji}
+              </div>
 
-              {/* Status Icons */}
+              {/* Option Text Label */}
+              <span className="text-lg sm:text-xl text-center px-2 font-black leading-tight">
+                {option}
+              </span>
+
+              {/* Visual status indicators */}
               {isSelected && answerState === 'correct' && (
-                <div className="flex items-center gap-1.5 text-sm font-black text-yellow-200 mt-1">
+                <div className="flex items-center gap-1.5 text-sm font-black text-yellow-200 mt-1 animate-bounce">
                   <CheckCircle2 className="w-6 h-6 text-white" />
-                  <span>Đúng rồi!</span>
+                  <span>Chính xác! ⭐</span>
                 </div>
               )}
 
               {isSelected && answerState === 'wrong' && (
                 <div className="flex items-center gap-1.5 text-sm font-black text-white mt-1">
                   <XCircle className="w-6 h-6 text-white" />
-                  <span>Thử lại nhé!</span>
+                  <span>Bé thử lại nhé!</span>
                 </div>
               )}
             </button>
@@ -334,8 +376,8 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
       </div>
 
       {/* Smart TV Remote Navigation Reminder */}
-      <div className="p-3 bg-white/70 rounded-2xl border border-amber-200 text-center text-xs sm:text-sm font-bold text-slate-600 shadow-xs">
-        📺 <span className="font-extrabold text-amber-900">Mẹo Smart TV:</span> Dùng các phím mũi tên [← → ↑ ↓] để đổi đáp án, bấm [OK] để chọn, hoặc bấm trực tiếp các phím [1] [2] [3] trên điều khiển!
+      <div className="p-3 bg-white/80 rounded-2xl border border-amber-200 text-center text-xs sm:text-sm font-bold text-slate-600 shadow-xs">
+        📺 <span className="font-extrabold text-amber-900">Mẹo Smart TV / HDMI:</span> Dùng các phím mũi tên [← →] hoặc bấm số [1] [2] [3] trên điều khiển để chọn đáp án tương ứng với hình ảnh!
       </div>
     </div>
   );
