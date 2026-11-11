@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Camera, CameraOff, ArrowLeft, RotateCcw, Volume2, Sparkles, Smile, Image as ImageIcon } from 'lucide-react';
 import { playCorrectSound, playClickSound, playVictoryFanfare, speakVietnamese } from '../utils/audio';
+import { CameraBackdrop } from './CameraBackdrop';
 
 interface CameraFacesGameViewProps {
   onExit: () => void;
@@ -169,10 +170,10 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
               className="absolute inset-0 w-full h-full object-cover transform -scale-x-100"
             />
           ) : (
-            <img
-              src="/src/assets/images/kid_camera_faces_1794370847143.jpg"
-              alt="Magic Mirror"
-              className="absolute inset-0 w-full h-full object-cover opacity-80"
+            <CameraBackdrop
+              imageSrc="/assets/images/kid_camera_faces_1794370847143.jpg"
+              theme="faces"
+              title="Gương Thần Biểu Cảm"
             />
           )}
 

@@ -294,8 +294,11 @@ export const PetRacerGameView: React.FC<PetRacerGameViewProps> = ({
         {/* Background Track Scenery */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <img
-            src="/src/assets/images/kid_pet_racing_1794368980202.jpg"
+            src="/assets/images/kid_pet_racing_1794368980202.jpg"
             alt="Track"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
             className="w-full h-full object-cover"
           />
         </div>

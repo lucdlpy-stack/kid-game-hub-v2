@@ -189,8 +189,11 @@ export const ObstacleRunnerGameView: React.FC<ObstacleRunnerGameViewProps> = ({
       {/* Main Runner Field */}
       <div className="relative rounded-3xl overflow-hidden border-4 border-emerald-400 shadow-2xl bg-gradient-to-b from-sky-300 via-amber-100 to-emerald-200 min-h-[460px] sm:min-h-[520px] select-none">
         <img
-          src="/src/assets/images/kid_runner_jump_1794371559321.jpg"
+          src="/assets/images/kid_runner_jump_1794371559321.jpg"
           alt="Runner Path"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
           className="absolute inset-0 w-full h-full object-cover opacity-85 pointer-events-none"
         />
 

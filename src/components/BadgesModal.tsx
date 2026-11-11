@@ -2,6 +2,7 @@ import React from 'react';
 import { KidBadge, getStoredBadges } from '../services/badgeService';
 import { X, Award, Trophy, Sparkles, CheckCircle2, Lock, Volume2 } from 'lucide-react';
 import { playClickSound, speakVietnamese } from '../utils/audio';
+import { MascotAvatar } from './MascotAvatar';
 
 interface BadgesModalProps {
   onClose: () => void;
@@ -56,13 +57,7 @@ export const BadgesModal: React.FC<BadgesModalProps> = ({ onClose, starsCount })
         {/* Profile Summary Card */}
         <div className="bg-gradient-to-r from-amber-100 via-orange-100 to-yellow-100 rounded-2xl p-4 sm:p-5 border-2 border-amber-300 shadow-sm mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-amber-400 shadow-md bg-white p-1 shrink-0">
-              <img
-                src="/src/assets/images/kid_mascot_star_1794364848021.jpg"
-                alt="Kid Profile Mascot"
-                className="w-full h-full object-cover rounded-xl"
-              />
-            </div>
+            <MascotAvatar size="sm" showBadgePill={false} />
             <div>
               <div className="text-lg font-black text-amber-950">
                 Bé Yêu Mầm Non (3-5 Tuổi)

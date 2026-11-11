@@ -187,8 +187,11 @@ export const ArcheryGameView: React.FC<ArcheryGameViewProps> = ({
       {/* Main Archery Field */}
       <div className="relative rounded-3xl overflow-hidden border-4 border-orange-400 shadow-2xl bg-gradient-to-b from-sky-200 via-amber-100 to-emerald-200 min-h-[460px] sm:min-h-[520px] select-none">
         <img
-          src="/src/assets/images/kid_archery_fun_1794371559510.jpg"
+          src="/assets/images/kid_archery_fun_1794371559510.jpg"
           alt="Archery Forest"
+          onError={(e) => {
+            e.currentTarget.style.display = 'none';
+          }}
           className="absolute inset-0 w-full h-full object-cover opacity-85 pointer-events-none"
         />
 

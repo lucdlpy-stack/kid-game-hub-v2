@@ -12,7 +12,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'quiz',
     description: 'Bé học cách lấy khăn ướt bịt mũi, bò khom lưng tránh khói và gọi chú lính cứu hỏa 114 khẩn cấp!',
     badgeTheme: 'rose',
-    bannerImage: '/src/assets/images/kid_archery_fun_1794371559510.jpg',
+    bannerImage: '/assets/images/kid_archery_fun_1794371559510.jpg',
     interactiveQuestions: [
       {
         question: 'Khi thấy nhà có khói đen hoặc đám lửa, bé cần dùng cái gì bịt lên mũi miệng?',
@@ -392,7 +392,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_transform',
     description: 'Tạo hình trẻ em thành nhân vật ngộ nghĩnh: Khủng Long Dino, Hổ Vàng, Siêu Nhân Cầu Vồng, Công Chúa Hoa Cúc khi đứng trước camera!',
     badgeTheme: 'emerald',
-    bannerImage: '/src/assets/images/kid_camera_faces_1794370847143.jpg'
+    bannerImage: '/assets/images/kid_camera_faces_1794370847143.jpg'
   },
 
   // 7. GAME CAMERA: BÉ BẮT BONG BÓNG & QUẢ NGỌT
@@ -404,7 +404,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_ar',
     description: 'Bé vẫy tay trước camera hoặc chạm vào màn hình để nổ bong bóng và thu thập trái cây thơm ngon!',
     badgeTheme: 'cyan',
-    bannerImage: '/src/assets/images/kid_camera_bubbles_1794368979884.jpg'
+    bannerImage: '/assets/images/kid_camera_bubbles_1794368979884.jpg'
   },
 
   // 8. GAME CAMERA: GƯƠNG THẦN BIỂU CẢM & MẶT NẠ VUI NHỘN
@@ -416,7 +416,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_faces',
     description: 'Bé soi gương camera đội nón khủng long, đeo tai hổ, cười toe toét và chụp những bức hình kỷ niệm siêu đáng yêu!',
     badgeTheme: 'rose',
-    bannerImage: '/src/assets/images/kid_camera_faces_1794370847143.jpg'
+    bannerImage: '/assets/images/kid_camera_faces_1794370847143.jpg'
   },
 
   // 9. GAME CAMERA: VŨ ĐIỆU BẮT SAO VŨ TRỤ
@@ -428,7 +428,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_stars',
     description: 'Các ngôi sao băng lấp lánh đang rơi! Bé dùng 2 bàn tay hứng sao vào chiếc giỏ ma thuật cùng bạn Khủng Long Dino!',
     badgeTheme: 'indigo',
-    bannerImage: '/src/assets/images/kid_camera_stars_1794368979884.jpg'
+    bannerImage: '/assets/images/kid_camera_stars_1794368979884.jpg'
   },
 
   // === DÒNG GAME 3: NĂNG ĐỘNG, BẮN CUNG, VƯỢT CHƯỚNG NGẠI VẬT & ĐUA XE CẢNH SÁT ===
@@ -442,7 +442,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'archery_fun',
     description: 'Bé kéo dây cung đồ chơi và thả mũi tên đầu cao su ngộ nghĩnh trúng các mục tiêu quả táo, dưa hấu, hái ngàn sao thưởng!',
     badgeTheme: 'amber',
-    bannerImage: '/src/assets/images/kid_archery_fun_1794371559510.jpg'
+    bannerImage: '/assets/images/kid_archery_fun_1794371559510.jpg'
   },
 
   // 11. GAME VƯỢT CHƯỚNG NGẠI VẬT: CUỘC PHIÊU LƯU VƯỢT CHƯỚNG NGẠI VẬT
@@ -454,7 +454,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'obstacle_runner',
     description: 'Bé cùng bạn Hổ Vàng nhảy qua khối gỗ, vũng nước, ăn sao vàng và trái cây trên đường đua đồng cỏ sinh động!',
     badgeTheme: 'emerald',
-    bannerImage: '/src/assets/images/kid_runner_jump_1794371559321.jpg'
+    bannerImage: '/assets/images/kid_runner_jump_1794371559321.jpg'
   },
 
   // 12. GAME ĐUA XE: ĐUA XE THÚ CƯNG CẦU VỒNG
@@ -466,7 +466,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'pet_racer',
     description: 'Kịch tính và vui nhộn! Bạn Khủng Long, Cún Con và Hổ Vàng đua xe siêu tốc trên đường đua cầu vồng rực rỡ!',
     badgeTheme: 'rose',
-    bannerImage: '/src/assets/images/kid_pet_racing_1794368980202.jpg'
+    bannerImage: '/assets/images/kid_pet_racing_1794368980202.jpg'
   },
 
   // 13. GAME ÂM NHẠC: ĐÀN PHÍM MA THUẬT & ÂM THANH

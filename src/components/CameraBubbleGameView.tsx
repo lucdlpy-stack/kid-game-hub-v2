@@ -12,6 +12,7 @@ import {
   Hand
 } from 'lucide-react';
 import { playCorrectSound, playClickSound, playVictoryFanfare, speakVietnamese } from '../utils/audio';
+import { CameraBackdrop } from './CameraBackdrop';
 
 interface BubbleItem {
   id: number;
@@ -299,10 +300,10 @@ export const CameraBubbleGameView: React.FC<CameraBubbleGameViewProps> = ({
             <canvas ref={canvasRef} width={160} height={120} className="hidden" />
           </div>
         ) : (
-          <img
-            src="/src/assets/images/kid_camera_bubbles_1794368979884.jpg"
-            alt="Bubble World"
-            className="absolute inset-0 w-full h-full object-cover opacity-85 pointer-events-none"
+          <CameraBackdrop
+            imageSrc="/assets/images/kid_camera_bubbles_1794368979884.jpg"
+            theme="bubbles"
+            title="Bé Bắt Bong Bóng & Quả Ngọt"
           />
         )}
 

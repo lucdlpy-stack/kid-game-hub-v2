@@ -143,6 +143,9 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onSelect, isFocused })
           <img
             src={game.bannerImage}
             alt={game.title}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
             className="w-full h-full object-cover"
           />
         </div>

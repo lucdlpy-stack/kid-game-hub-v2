@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkles, Tv, Volume2, Award, Zap } from 'lucide-react';
 import { speakVietnamese } from '../utils/audio';
+import { MascotAvatar } from './MascotAvatar';
 
 interface HeroBannerProps {
   totalGames: number;
@@ -30,9 +31,11 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
         <div className="relative min-h-[220px] sm:min-h-[260px] flex flex-col md:flex-row items-center justify-between p-6 sm:p-8 gap-6">
           {/* Background image overlay with scrim */}
           <img
-            src="/src/assets/images/kid_banner_fun_1794364848216.jpg"
-            alt="Kid Game Hub World"
-            referrerPolicy="no-referrer"
+            src="/assets/images/kid_banner_fun_1794364848216.jpg"
+            alt="World"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
             className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
           />
 
@@ -88,26 +91,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
           {/* Right Mascot Zone - CLICK TO OPEN BADGES MODAL */}
           <div className="relative z-10 shrink-0 flex flex-col items-center">
-            <button
+            <MascotAvatar
+              size="lg"
               onClick={onOpenBadges}
-              title="Bấm vào ảnh đại diện để xem Bảng Huy Hiệu Thành Tựu Nhỏ của bé!"
-              className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl bg-amber-100 p-1 group cursor-pointer hover:scale-105 transition-transform"
-            >
-              <img
-                src="/src/assets/images/kid_mascot_star_1794364848021.jpg"
-                alt="Kid Game Hub Mascot Avatar"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute top-2 right-2 bg-yellow-400 text-yellow-950 p-1.5 rounded-full shadow-lg border border-white animate-bounce">
-                <Award className="w-5 h-5" />
-              </div>
-              <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-xl py-1 text-center">
-                <p className="text-[11px] font-black text-yellow-300 tracking-wider flex items-center justify-center gap-1">
-                  <span>🏆 BẢNG HUY HIỆU BÉ</span>
-                </p>
-              </div>
-            </button>
+            />
 
             {/* Quick stats badges */}
             <div className="mt-3 flex items-center gap-3">

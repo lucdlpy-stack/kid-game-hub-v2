@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import confetti from 'canvas-confetti';
 import { Camera, CameraOff, ArrowLeft, RotateCcw, Volume2, Sparkles, Trophy, Hand } from 'lucide-react';
 import { playCorrectSound, playClickSound, playVictoryFanfare, speakVietnamese } from '../utils/audio';
+import { CameraBackdrop } from './CameraBackdrop';
 
 interface FallingStar {
   id: number;
@@ -261,10 +262,10 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
             <canvas ref={canvasRef} width={160} height={120} className="hidden" />
           </div>
         ) : (
-          <img
-            src="/src/assets/images/kid_camera_stars_1794370846892.jpg"
-            alt="Cosmic Stars"
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
+          <CameraBackdrop
+            imageSrc="/assets/images/kid_camera_stars_1794370846892.jpg"
+            theme="stars"
+            title="Vũ Điệu Bắt Sao Vũ Trụ"
           />
         )}
 
