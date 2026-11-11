@@ -51,6 +51,7 @@ export const CameraBubbleGameView: React.FC<CameraBubbleGameViewProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
 
   const [cameraActive, setCameraActive] = useState<boolean>(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
@@ -65,39 +66,47 @@ export const CameraBubbleGameView: React.FC<CameraBubbleGameViewProps> = ({
   const startCamera = async () => {
     try {
       setCameraError(null);
-      const stream = await navigator.mediaDevices.getUserMedia({
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
         audio: false
       });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      }
+      setStream(mediaStream);
       setCameraActive(true);
       speakVietnamese('Bé hãy đứng trước camera và vẫy tay để nổ bong bóng nhé!');
     } catch (err) {
       console.warn('Camera access denied or unavailable:', err);
       setCameraError('Chưa bật được camera, bé có thể chạm trực tiếp hoặc dùng chuột/remote để chơi nhé!');
       setCameraActive(false);
+      setStream(null);
     }
   };
 
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
+    if (stream) {
       stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+    if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
     setCameraActive(false);
   };
 
   useEffect(() => {
-    // Attempt auto camera start
     startCamera();
     return () => {
-      stopCamera();
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
     };
   }, []);
+
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [stream, cameraActive]);
 
   // Spawn bubbles periodically
   useEffect(() => {
@@ -244,15 +253,15 @@ export const CameraBubbleGameView: React.FC<CameraBubbleGameViewProps> = ({
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-6xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-3 mb-4">
+      <div className="flex items-center justify-between gap-3 mb-2 shrink-0">
         <button
           onClick={() => {
             stopCamera();
             onExit();
           }}
-          className="flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-sky-50 text-slate-800 border-2 border-sky-300 rounded-2xl font-black text-sm shadow-sm cursor-pointer tv-focus-ring"
+          className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-sky-50 text-slate-800 border-2 border-sky-300 rounded-2xl font-black text-sm shadow-sm cursor-pointer tv-focus-ring"
         >
           <ArrowLeft className="w-5 h-5 text-sky-700" />
           <span>Về Kho Game</span>
@@ -285,21 +294,21 @@ export const CameraBubbleGameView: React.FC<CameraBubbleGameViewProps> = ({
       </div>
 
       {/* Main Play Area */}
-      <div className="relative rounded-3xl overflow-hidden border-4 border-sky-400 shadow-2xl bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-100 min-h-[460px] sm:min-h-[540px]">
+      <div className="relative rounded-3xl overflow-hidden border-4 border-sky-400 shadow-2xl bg-gradient-to-b from-sky-200 via-sky-100 to-emerald-100 flex-1 min-h-[360px]">
         {/* Background Image / Camera Feed */}
-        {cameraActive ? (
-          <div className="absolute inset-0 z-0">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="w-full h-full object-cover transform -scale-x-100 opacity-80"
-            />
-            {/* Hidden canvas for optical motion detection */}
-            <canvas ref={canvasRef} width={160} height={120} className="hidden" />
-          </div>
-        ) : (
+        <div className={`absolute inset-0 z-0 ${cameraActive ? 'block' : 'hidden'}`}>
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className="w-full h-full object-cover transform -scale-x-100 opacity-80"
+          />
+          {/* Hidden canvas for optical motion detection */}
+          <canvas ref={canvasRef} width={160} height={120} className="hidden" />
+        </div>
+
+        {!cameraActive && (
           <CameraBackdrop
             imageSrc="/assets/images/kid_camera_bubbles_1794368979884.jpg"
             theme="bubbles"

@@ -59,28 +59,11 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
               <button
-                onClick={onQuickStart}
-                className="px-6 py-3.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-black text-lg rounded-2xl shadow-lg hover:shadow-emerald-400/50 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-2 tv-focus-ring"
-              >
-                <span>🎮</span>
-                <span>Chơi Ngay Nào Bé Ơi!</span>
-              </button>
-
-              <button
-                onClick={handleWelcomeSpeech}
-                title="Bấm để nghe cô đọc lời chào"
-                className="px-4 py-3 bg-amber-100 hover:bg-amber-200 text-amber-900 font-extrabold text-sm rounded-2xl border-2 border-amber-300 transition-all cursor-pointer flex items-center gap-2 shadow-sm"
-              >
-                <Volume2 className="w-5 h-5 text-amber-700" />
-                <span>Nghe Cô Chào</span>
-              </button>
-
-              <button
                 onClick={onToggleTvRemote}
-                className={`px-4 py-3 font-extrabold text-sm rounded-2xl border-2 transition-all cursor-pointer flex items-center gap-2 shadow-sm ${
+                className={`px-5 py-3 font-extrabold text-sm sm:text-base rounded-2xl border-2 transition-all cursor-pointer flex items-center gap-2 shadow-md ${
                   tvRemoteVisible
                     ? 'bg-sky-500 text-white border-sky-600 shadow-sky-300'
-                    : 'bg-white hover:bg-sky-50 text-sky-800 border-sky-300'
+                    : 'bg-white hover:bg-sky-50 text-sky-900 border-sky-300'
                 }`}
               >
                 <Tv className="w-5 h-5 text-sky-600" />

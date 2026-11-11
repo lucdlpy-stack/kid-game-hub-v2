@@ -199,37 +199,23 @@ export function speakVietnamese(text: string, onEnd?: () => void) {
   try {
     window.speechSynthesis.cancel(); // Stop any pending speech
 
-    // Natural Central Vietnamese teacher phrasing inflection
-    // Softens rigid sentences into tender preschool teacher speech
-    let teacherText = text;
-    // Add warm teacher intonation markers if missing
-    if (!teacherText.includes('nhen') && !teacherText.includes('nè') && !teacherText.includes('nha')) {
-      if (teacherText.endsWith('.')) {
-        teacherText = teacherText.slice(0, -1) + ' nha các con!';
-      } else if (teacherText.endsWith('!')) {
-        teacherText = teacherText.replace(/!+$/, ' nè con ơi!');
-      }
-    }
+    // Keep voice prompts concise, clean and direct for toddlers
+    let cleanText = text.replace(/!+/g, '.').replace(/\.+/g, '.').trim();
 
-    const utterance = new SpeechSynthesisUtterance(teacherText);
+    const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = 'vi-VN';
-    
-    // Vocal characteristics for Central Vietnamese teacher:
-    // Slightly tender tempo (0.86) + melodious gentle pitch (1.06) + soft volume
-    utterance.rate = 0.86; 
-    utterance.pitch = 1.06;
-    utterance.volume = 0.95;
+    utterance.rate = 0.95; // Crisp, clear speech rate
+    utterance.pitch = 1.05; // Gentle, friendly teacher pitch
+    utterance.volume = 1.0;
 
     const voices = window.speechSynthesis.getVoices();
-    // Prioritize natural Vietnamese voices (Google Tiếng Việt, Microsoft HoaiMy, Linh, or Apple Linh/Mai)
     const naturalVoice = voices.find(
       (v) =>
         v.lang.startsWith('vi') &&
-        (v.name.toLowerCase().includes('natural') ||
-          v.name.toLowerCase().includes('hoaimy') ||
+        (v.name.toLowerCase().includes('hoaimy') ||
           v.name.toLowerCase().includes('linh') ||
           v.name.toLowerCase().includes('google') ||
-          v.name.toLowerCase().includes('female'))
+          v.name.toLowerCase().includes('natural'))
     ) || voices.find((v) => v.lang.startsWith('vi'));
 
     if (naturalVoice) {

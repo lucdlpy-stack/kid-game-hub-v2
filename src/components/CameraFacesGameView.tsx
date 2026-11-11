@@ -42,6 +42,7 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
   soundEnabled
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const [cameraActive, setCameraActive] = useState<boolean>(false);
   const [selectedMaskIdx, setSelectedMaskIdx] = useState<number>(0);
   const [emotionIdx, setEmotionIdx] = useState<number>(0);
@@ -50,26 +51,26 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
         audio: false
       });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      }
+      setStream(mediaStream);
       setCameraActive(true);
       speakVietnamese('Bé nhìn vào gương thần camera để đội nón hoạt hình và chụp hình thật đẹp nhé!');
     } catch (err) {
       console.warn('Camera not available:', err);
       setCameraActive(false);
+      setStream(null);
     }
   };
 
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
+    if (stream) {
       stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+    if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
     setCameraActive(false);
@@ -77,8 +78,19 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
 
   useEffect(() => {
     startCamera();
-    return () => stopCamera();
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [stream, cameraActive]);
 
   const currentMask = AR_MASKS[selectedMaskIdx];
   const currentEmotion = EMOTIONS[emotionIdx];
@@ -125,9 +137,9 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-4 mb-4">
+      <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
         <button
           onClick={() => {
             stopCamera();
@@ -158,18 +170,21 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
       </div>
 
       {/* Main Mirror Area */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-1 min-h-0">
         {/* Left 2 Cols: Mirror Viewport with AR Overlays */}
-        <div className="md:col-span-2 relative rounded-3xl overflow-hidden border-8 border-amber-300 shadow-2xl bg-gradient-to-b from-purple-200 via-pink-100 to-amber-100 min-h-[420px] sm:min-h-[480px] flex items-center justify-center">
-          {cameraActive ? (
+        <div className="md:col-span-2 flex flex-col items-center justify-center">
+          <div className="w-full max-w-xl aspect-[4/3] rounded-3xl overflow-hidden border-8 border-amber-300 shadow-2xl relative bg-slate-900 flex items-center justify-center">
             <video
               ref={videoRef}
               autoPlay
               playsInline
               muted
-              className="absolute inset-0 w-full h-full object-cover transform -scale-x-100"
+              className={`w-full h-full object-cover transform -scale-x-100 ${
+                cameraActive ? 'block' : 'hidden'
+              }`}
             />
-          ) : (
+
+          {!cameraActive && (
             <CameraBackdrop
               imageSrc="/assets/images/kid_camera_faces_1794370847143.jpg"
               theme="faces"
@@ -215,10 +230,10 @@ export const CameraFacesGameView: React.FC<CameraFacesGameViewProps> = ({
               onClick={handleNextEmotion}
               className="px-3 py-1.5 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-xs font-black border border-amber-300 cursor-pointer whitespace-nowrap"
             >
-              Đổi Thử Thách ➡️
             </button>
           </div>
         </div>
+      </div>
 
         {/* Right 1 Col: Mask Wardrobe & Snapshot gallery */}
         <div className="bg-white rounded-3xl p-5 border-4 border-amber-300 shadow-lg flex flex-col justify-between">

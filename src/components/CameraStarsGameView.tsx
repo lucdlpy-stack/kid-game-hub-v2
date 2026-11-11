@@ -27,6 +27,7 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
 }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [stream, setStream] = useState<MediaStream | null>(null);
 
   const [cameraActive, setCameraActive] = useState<boolean>(false);
   const [basketX, setBasketX] = useState<number>(50); // percentage 15 - 85
@@ -39,26 +40,26 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({
+      const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
         audio: false
       });
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream;
-        videoRef.current.play();
-      }
+      setStream(mediaStream);
       setCameraActive(true);
       speakVietnamese('Bé hãy vẫy tay sang trái sang phải để điều khiển giỏ thần kỳ hứng sao rơi nhé!');
     } catch (err) {
       console.warn('Camera error:', err);
       setCameraActive(false);
+      setStream(null);
     }
   };
 
   const stopCamera = () => {
-    if (videoRef.current && videoRef.current.srcObject) {
-      const stream = videoRef.current.srcObject as MediaStream;
+    if (stream) {
       stream.getTracks().forEach((track) => track.stop());
+      setStream(null);
+    }
+    if (videoRef.current) {
       videoRef.current.srcObject = null;
     }
     setCameraActive(false);
@@ -66,8 +67,19 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
 
   useEffect(() => {
     startCamera();
-    return () => stopCamera();
+    return () => {
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      videoRef.current.srcObject = stream;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [stream, cameraActive]);
 
   // Spawn stars
   useEffect(() => {
@@ -210,9 +222,9 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top Bar */}
-      <div className="flex items-center justify-between gap-4 mb-4">
+      <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
         <button
           onClick={() => {
             stopCamera();
@@ -248,20 +260,20 @@ export const CameraStarsGameView: React.FC<CameraStarsGameViewProps> = ({
       </div>
 
       {/* Main Cosmic Play Area */}
-      <div className="relative rounded-3xl overflow-hidden border-4 border-indigo-400 shadow-2xl bg-gradient-to-b from-indigo-900 via-purple-900 to-slate-900 min-h-[460px] sm:min-h-[520px] select-none">
+      <div className="relative rounded-3xl overflow-hidden border-4 border-indigo-400 shadow-2xl bg-gradient-to-b from-indigo-900 via-purple-900 to-slate-900 flex-1 min-h-[360px] select-none">
         {/* Background / Video Feed */}
-        {cameraActive ? (
-          <div className="absolute inset-0 z-0">
-            <video
-              ref={videoRef}
-              autoPlay
-              playsInline
-              muted
-              className="w-full h-full object-cover transform -scale-x-100 opacity-60"
-            />
-            <canvas ref={canvasRef} width={160} height={120} className="hidden" />
-          </div>
-        ) : (
+        <div className={`absolute inset-0 z-0 ${cameraActive ? 'block' : 'hidden'}`}>
+          <video
+            ref={videoRef}
+            autoPlay
+            playsInline
+            muted
+            className="w-full h-full object-cover transform -scale-x-100 opacity-60"
+          />
+          <canvas ref={canvasRef} width={160} height={120} className="hidden" />
+        </div>
+
+        {!cameraActive && (
           <CameraBackdrop
             imageSrc="/assets/images/kid_camera_stars_1794370846892.jpg"
             theme="stars"

@@ -181,9 +181,9 @@ export const MatchingPuzzleView: React.FC<MatchingPuzzleViewProps> = ({
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-4 px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top Header Bar */}
-      <div className="flex items-center justify-between gap-4 mb-6">
+      <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
         <button
           onClick={onExit}
           className="flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-sky-50 text-slate-800 border-2 border-sky-300 rounded-2xl font-extrabold text-sm sm:text-base shadow-sm transition-all cursor-pointer tv-focus-ring"

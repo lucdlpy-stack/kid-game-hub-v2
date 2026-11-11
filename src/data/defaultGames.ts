@@ -428,7 +428,7 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_stars',
     description: 'Các ngôi sao băng lấp lánh đang rơi! Bé dùng 2 bàn tay hứng sao vào chiếc giỏ ma thuật cùng bạn Khủng Long Dino!',
     badgeTheme: 'indigo',
-    bannerImage: '/assets/images/kid_camera_stars_1794368979884.jpg'
+    bannerImage: '/assets/images/kid_camera_stars_1794370846892.jpg'
   },
 
   // === DÒNG GAME 3: NĂNG ĐỘNG, BẮN CUNG, VƯỢT CHƯỚNG NGẠI VẬT & ĐUA XE CẢNH SÁT ===
@@ -1192,6 +1192,140 @@ export const DEFAULT_GAMES: Game[] = [
       { id: 'p4', name: 'Chú Cua Biển Ngang Tàng', symbol: '🦀', matchTarget: 'Bãi Cát Vàng Mịn', targetSymbol: '🏖️', hint: 'Cua có hai chiếc càng to bò ngang thoăn thoắt trên bãi cát!' },
       { id: 'p5', name: 'Sao Biển 5 Cánh Xinh', symbol: '⭐', matchTarget: 'Đáy Đại Dương Xanh', targetSymbol: '🌊', hint: 'Sao biển nằm nghỉ ngơi dưới làn nước trong vắt mát rượi!' },
       { id: 'p6', name: 'Cá Voi Khổng Lồ', symbol: '🐳', matchTarget: 'Cột Nước Phun Lên Trời', targetSymbol: '⛲', hint: 'Cá voi bơi lội thở phun cột nước cao vút lên bầu trời xanh!' }
+    ]
+  },
+
+  // === DÒNG GAME MỚI: TÌM CHỮ CÁI TIẾNG VIỆT MẦM NON (A, B, C, D, Đ...) ===
+
+  // 27. GAME HỌC CHỮ: BÉ HỌC & TÌM CHỮ CÁI TIẾNG VIỆT
+  {
+    id: 'game_tim_chu_cai',
+    title: 'Bé Học & Tìm Chữ Cái Tiếng Việt',
+    icon: '🅰️',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé quan sát quả ngọt, con vật quen thuộc và chọn đúng chữ cái A, B, C, D, Đ tương ứng nhé!',
+    badgeTheme: 'rose',
+    interactiveQuestions: [
+      {
+        question: 'Chữ cái nào bắt đầu cho tên quả Táo Đỏ ngọt ngào 🍎?',
+        options: ['Chữ A Rực Rỡ', 'Chữ B Bò Sữa', 'Chữ C Con Cá'],
+        optionEmojis: ['🅰️', '🅱️', '©️'],
+        correctAnswer: 'Chữ A Rực Rỡ',
+        timeLimit: 20,
+        hint: 'Chữ A bắt đầu bằng quả Táo ngon lành!',
+        soundType: 'star',
+        emoji: '🅰️'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho tên Cô Bò Sữa hiền lành cho bé uống sữa 🐮?',
+        options: ['Chữ B Bò Sữa', 'Chữ A Quả Táo', 'Chữ D Dê Con'],
+        optionEmojis: ['🅱️', '🅰️', '🐐'],
+        correctAnswer: 'Chữ B Bò Sữa',
+        timeLimit: 20,
+        hint: 'Chữ B đứng đầu trong tên Cô Bò Sữa nha con!',
+        soundType: 'bell',
+        emoji: '🅱️'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho tên Chú Cá bơi lội dưới nước 🐟?',
+        options: ['Chữ C Con Cá', 'Chữ E Em Bé', 'Chữ G Gà Trống'],
+        optionEmojis: ['🐟', '👶', '🐓'],
+        correctAnswer: 'Chữ C Con Cá',
+        timeLimit: 20,
+        hint: 'Chữ C bắt đầu tên Chú Cá Vàng tung tăng!',
+        soundType: 'bell',
+        emoji: '🐟'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho tên Chú Dê Con gặm cỏ trên đồi 🐐?',
+        options: ['Chữ D Dê Con', 'Chữ Đ Đèn Lồng', 'Chữ H Hoa Hồng'],
+        optionEmojis: ['🐐', '🏮', '🌹'],
+        correctAnswer: 'Chữ D Dê Con',
+        timeLimit: 20,
+        hint: 'Chữ D nét cong tròn nét thẳng đứng!',
+        soundType: 'bell',
+        emoji: '🐐'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho chiếc Đèn Lồng đỏ rước Tết Trung Thu 🏮?',
+        options: ['Chữ Đ Đèn Lồng', 'Chữ D Dê Con', 'Chữ N Ngôi Nhà'],
+        optionEmojis: ['🏮', '🐐', '🏡'],
+        correctAnswer: 'Chữ Đ Đèn Lồng',
+        timeLimit: 20,
+        hint: 'Chữ Đ có gạch ngang trên đầu tỏa sáng!',
+        soundType: 'star',
+        emoji: '🏮'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho Chú Gà Trống gáy sáng ò ó o 🐓?',
+        options: ['Chữ G Gà Trống', 'Chữ H Bông Hoa', 'Chữ I Khăn Giấy'],
+        optionEmojis: ['🐓', '🌸', '🧻'],
+        correctAnswer: 'Chữ G Gà Trống',
+        timeLimit: 20,
+        hint: 'Chữ G đứng đầu câu gáy chú gà trống!',
+        soundType: 'bell',
+        emoji: '🐓'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho Bông Hoa Rực Rỡ tỏa hương thơm 🌸?',
+        options: ['Chữ H Bông Hoa', 'Chữ L Chiếc Lá', 'Chữ M Quả Mận'],
+        optionEmojis: ['🌸', '🍃', '🍑'],
+        correctAnswer: 'Chữ H Bông Hoa',
+        timeLimit: 20,
+        hint: 'Chữ H bắt đầu tên Hoa Xinh rực rỡ!',
+        soundType: 'bell',
+        emoji: '🌸'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho Ngôi Nhà ấm áp gia đình bé ở 🏡?',
+        options: ['Chữ N Ngôi Nhà', 'Chữ O Quả Trứng', 'Chữ P Nón Phớt'],
+        optionEmojis: ['🏡', '🥚', '🧢'],
+        correctAnswer: 'Chữ N Ngôi Nhà',
+        timeLimit: 20,
+        hint: 'Chữ N gõ nhịp tên Ngôi Nhà thân thương!',
+        soundType: 'bell',
+        emoji: '🏡'
+      },
+      {
+        question: 'Chữ O có hình dáng tròn vo giống như vật nào dưới đây 🥚?',
+        options: ['Quả Trứng Tròn O', 'Chiếc Thước Kẻ', 'Chiếc Ghế'],
+        optionEmojis: ['🥚', '📏', '🪑'],
+        correctAnswer: 'Quả Trứng Tròn O',
+        timeLimit: 20,
+        hint: 'Chữ O tròn như quả trứng gà!',
+        soundType: 'star',
+        emoji: '⭕'
+      },
+      {
+        question: 'Chữ cái nào bắt đầu cho Chú Vịt Vàng kêu cạp cạp 🦆?',
+        options: ['Chữ V Vịt Vàng', 'Chữ X Xe Đạp', 'Chữ Y Y Tế'],
+        optionEmojis: ['🦆', '🚲', '🏥'],
+        correctAnswer: 'Chữ V Vịt Vàng',
+        timeLimit: 20,
+        hint: 'Chữ V nét xiên như hai cánh chú vịt xoè ra!',
+        soundType: 'bell',
+        emoji: '🦆'
+      }
+    ]
+  },
+
+  // 28. GAME HỌC CHỮ: BÉ GHÉP CHỮ CÁI VỚI HÌNH ẢNH
+  {
+    id: 'game_ghep_chu_hinh',
+    title: 'Bé Ghép Chữ Cái Với Quả & Con Vật',
+    icon: '🔤',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Bé nối chữ cái A 🅰️ với Quả Táo 🍎, chữ B 🅱️ với Chú Bò 🐮, chữ C 🔤 với Con Cá 🐟!',
+    badgeTheme: 'amber',
+    puzzlePairs: [
+      { id: 'p1', name: 'Chữ A Rực Rỡ 🅰️', symbol: '🅰️', matchTarget: 'Quả Táo Đỏ Ngọt 🍎', targetSymbol: '🍎', hint: 'Chữ A đứng đầu tên quả Táo ngon lành!' },
+      { id: 'p2', name: 'Chữ B Thân Thương 🅱️', symbol: '🅱️', matchTarget: 'Cô Bò Sữa Hiền 🐮', targetSymbol: '🐮', hint: 'Chữ B bắt đầu tên Cô Bò Sữa!' },
+      { id: 'p3', name: 'Chữ C Xinh Xắn 🔤', symbol: '©️', matchTarget: 'Con Cá Bơi Lội 🐟', targetSymbol: '🐟', hint: 'Chữ C bắt đầu tên Con Cá Vàng!' },
+      { id: 'p4', name: 'Chữ D Nhanh Nhẹn 🐐', symbol: '🔤', matchTarget: 'Chú Dê Con Đồi 🐐', targetSymbol: '🐐', hint: 'Chữ D bắt đầu tên Chú Dê Con!' },
+      { id: 'p5', name: 'Chữ Đ Đỏ Thắm 🏮', symbol: '🔤', matchTarget: 'Đèn Lồng Đỏ Rực 🏮', targetSymbol: '🏮', hint: 'Chữ Đ bắt đầu tên chiếc Đèn Lồng!' },
+      { id: 'p6', name: 'Chữ G Oai Vệ 🐓', symbol: '🔤', matchTarget: 'Chú Gà Trống Gáy 🐓', targetSymbol: '🐓', hint: 'Chữ G bắt đầu tên Chú Gà Trống!' }
     ]
   }
 ];

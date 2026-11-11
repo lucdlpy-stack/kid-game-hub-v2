@@ -252,9 +252,9 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
   }
 
   return (
-    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top Game Bar */}
-      <div className="flex items-center justify-between gap-4 mb-4">
+      <div className="flex items-center justify-between gap-4 mb-2 shrink-0">
         <button
           onClick={onExit}
           className="flex items-center gap-2 px-4 py-2 bg-white hover:bg-amber-50 text-amber-900 border-2 border-amber-300 rounded-2xl font-black text-sm sm:text-base shadow-sm transition-all cursor-pointer tv-focus-ring"

@@ -287,9 +287,6 @@ export default function App() {
         hdmiMode ? 'text-lg' : ''
       }`}
     >
-      {/* Dynamic Seasonal Weather Overlay Animation */}
-      <WeatherOverlay season={season} />
-
       {/* 1. FIXED VERTICAL SIDEBAR ON THE LEFT */}
       <Sidebar
         soundEnabled={soundEnabled}
@@ -344,9 +341,11 @@ export default function App() {
         )}
 
         {/* Main Body */}
-        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-5 sm:py-8 pt-16 lg:pt-8">
+        <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-8 py-3 sm:py-6 pt-14 lg:pt-6">
           {activeGame ? (
-            renderGameView()
+            <div className="h-[calc(100vh-4rem)] max-h-[860px] flex flex-col justify-between overflow-hidden">
+              {renderGameView()}
+            </div>
           ) : (
             // Main Screen
             <div>

@@ -157,9 +157,9 @@ export const ObstacleRunnerGameView: React.FC<ObstacleRunnerGameViewProps> = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top HUD */}
-      <div className="flex items-center justify-between gap-3 mb-4">
+      <div className="flex items-center justify-between gap-3 mb-2 shrink-0">
         <button
           onClick={onExit}
           className="flex items-center gap-2 px-4 py-2 bg-white text-slate-800 border-2 border-emerald-300 rounded-2xl font-black text-sm shadow-sm cursor-pointer tv-focus-ring"
@@ -187,7 +187,7 @@ export const ObstacleRunnerGameView: React.FC<ObstacleRunnerGameViewProps> = ({
       </div>
 
       {/* Main Runner Field */}
-      <div className="relative rounded-3xl overflow-hidden border-4 border-emerald-400 shadow-2xl bg-gradient-to-b from-sky-300 via-amber-100 to-emerald-200 min-h-[460px] sm:min-h-[520px] select-none">
+      <div className="relative rounded-3xl overflow-hidden border-4 border-emerald-400 shadow-2xl bg-gradient-to-b from-sky-300 via-amber-100 to-emerald-200 flex-1 min-h-[360px] select-none">
         <img
           src="/assets/images/kid_runner_jump_1794371559321.jpg"
           alt="Runner Path"

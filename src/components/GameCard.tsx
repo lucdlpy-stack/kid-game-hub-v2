@@ -10,6 +10,8 @@ interface GameCardProps {
 }
 
 export const GameCard: React.FC<GameCardProps> = ({ game, onSelect, isFocused }) => {
+  const [bannerFailed, setBannerFailed] = React.useState(false);
+
   const handleClick = () => {
     playClickSound();
     onSelect(game);
@@ -138,14 +140,12 @@ export const GameCard: React.FC<GameCardProps> = ({ game, onSelect, isFocused })
       } tv-focus-ring overflow-hidden`}
     >
       {/* Optional decorative banner image preview */}
-      {game.bannerImage && (
+      {game.bannerImage && !bannerFailed && (
         <div className="absolute inset-0 z-0 opacity-15 group-hover:opacity-25 transition-opacity pointer-events-none">
           <img
             src={game.bannerImage}
-            alt={game.title}
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-            }}
+            alt=""
+            onError={() => setBannerFailed(true)}
             className="w-full h-full object-cover"
           />
         </div>

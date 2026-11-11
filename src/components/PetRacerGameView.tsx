@@ -260,9 +260,9 @@ export const PetRacerGameView: React.FC<PetRacerGameViewProps> = ({
 
   // Active Race View
   return (
-    <div className="max-w-5xl mx-auto py-3 px-2 sm:px-4">
+    <div className="max-w-5xl mx-auto h-full flex flex-col justify-between py-2 px-2 sm:px-4 overflow-hidden">
       {/* Top HUD */}
-      <div className="flex items-center justify-between gap-3 mb-4">
+      <div className="flex items-center justify-between gap-3 mb-2 shrink-0">
         <button
           onClick={() => setGameState('SELECT')}
           className="flex items-center gap-2 px-4 py-2 bg-white text-slate-800 border-2 border-amber-300 rounded-2xl font-black text-xs sm:text-sm shadow-sm cursor-pointer tv-focus-ring"
@@ -290,7 +290,7 @@ export const PetRacerGameView: React.FC<PetRacerGameViewProps> = ({
       </div>
 
       {/* Main Race Track */}
-      <div className="relative rounded-3xl overflow-hidden border-4 border-amber-400 shadow-2xl bg-gradient-to-b from-sky-300 via-indigo-200 to-amber-100 min-h-[460px] sm:min-h-[520px] select-none">
+      <div className="relative rounded-3xl overflow-hidden border-4 border-amber-400 shadow-2xl bg-gradient-to-b from-sky-300 via-indigo-200 to-amber-100 flex-1 min-h-[360px] select-none">
         {/* Background Track Scenery */}
         <div className="absolute inset-0 opacity-20 pointer-events-none">
           <img
