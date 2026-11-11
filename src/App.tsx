@@ -6,6 +6,7 @@
 import React, { useState, useEffect } from 'react';
 import { Game, QuizGame, MatchingPuzzleGame } from './types/game';
 import { getAllGames } from './services/githubTvSync';
+import { recordBadgeProgress } from './services/badgeService';
 import { Sidebar } from './components/Sidebar';
 import { HeroBanner } from './components/HeroBanner';
 import { GameCard } from './components/GameCard';
@@ -24,6 +25,7 @@ import { TvRemoteOverlay } from './components/TvRemoteOverlay';
 import { GameArchitectModal } from './components/GameArchitectModal';
 import { TvSyncModal } from './components/TvSyncModal';
 import { AiDinoChatModal } from './components/AiDinoChatModal';
+import { BadgesModal } from './components/BadgesModal';
 import { toggleBgm, playClickSound } from './utils/audio';
 import { MonitorPlay, Sparkles } from 'lucide-react';
 
@@ -51,6 +53,7 @@ export default function App() {
   const [showArchitectModal, setShowArchitectModal] = useState<boolean>(false);
   const [showTvSyncModal, setShowTvSyncModal] = useState<boolean>(false);
   const [showAiDinoModal, setShowAiDinoModal] = useState<boolean>(false);
+  const [showBadgesModal, setShowBadgesModal] = useState<boolean>(false);
 
   // Listen for games pushed via push_game_to_github or BroadcastChannel
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function App() {
     return () => window.removeEventListener('kid-game-hub-updated', handleSync);
   }, []);
 
-  // Save stars
+  // Save stars & record badge progress for stars collector
   const handleRewardStar = () => {
     setStarsCount((prev) => {
       const next = prev + 1;
@@ -71,6 +74,7 @@ export default function App() {
       } catch {
         // Ignore storage errors
       }
+      recordBadgeProgress('stars', 1);
       return next;
     });
   };
@@ -93,7 +97,7 @@ export default function App() {
 
   // Handle Smart TV keyboard navigation when on hub screen
   useEffect(() => {
-    if (activeGame !== null || showArchitectModal || showTvSyncModal || showAiDinoModal) return;
+    if (activeGame !== null || showArchitectModal || showTvSyncModal || showAiDinoModal || showBadgesModal) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (filteredGames.length === 0) return;
@@ -120,7 +124,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeGame, filteredGames, focusedCardIdx, showArchitectModal, showTvSyncModal, showAiDinoModal]);
+  }, [activeGame, filteredGames, focusedCardIdx, showArchitectModal, showTvSyncModal, showAiDinoModal, showBadgesModal]);
 
   // TV Remote software callbacks
   const handleRemoteNavigate = (direction: 'up' | 'down' | 'left' | 'right') => {
@@ -264,6 +268,7 @@ export default function App() {
         onOpenArchitect={() => setShowArchitectModal(true)}
         onOpenSync={() => setShowTvSyncModal(true)}
         onOpenAiDino={() => setShowAiDinoModal(true)}
+        onOpenBadges={() => setShowBadgesModal(true)}
         activeFilter={activeFilter}
         onChangeFilter={(f) => {
           playClickSound();
@@ -309,7 +314,7 @@ export default function App() {
           ) : (
             // Main Kid Game Hub Screen
             <div>
-              {/* Mascot & Welcome Banner */}
+              {/* Mascot & Welcome Banner - Mascot avatar opens Badges Modal */}
               <HeroBanner
                 totalGames={games.length}
                 totalStars={starsCount}
@@ -320,6 +325,7 @@ export default function App() {
                 }}
                 tvRemoteVisible={showTvRemote}
                 onToggleTvRemote={() => setShowTvRemote((prev) => !prev)}
+                onOpenBadges={() => setShowBadgesModal(true)}
               />
 
               {/* Section Heading & Quick AI trigger */}
@@ -332,17 +338,25 @@ export default function App() {
                     </span>
                   </h2>
                   <p className="text-xs sm:text-sm font-bold text-slate-600">
-                    4 Trò chơi Camera biến hình & chuyển động, Bắn cung tên, Vượt chướng ngại vật, Đua xe, Đàn nhạc và Đố vui!
+                    Bấm vào ảnh đại diện bé để xem Bảng Huy Hiệu Thành Tựu Nhỏ 🏆!
                   </p>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <button
+                    onClick={() => setShowBadgesModal(true)}
+                    className="px-3.5 py-2 bg-yellow-100 hover:bg-yellow-200 border-2 border-yellow-400 text-yellow-950 font-black text-xs sm:text-sm rounded-2xl shadow-sm transition-transform active:scale-95 cursor-pointer flex items-center gap-1.5"
+                  >
+                    <span>🏆</span>
+                    <span>Huy Hiệu Của Bé</span>
+                  </button>
+
+                  <button
                     onClick={() => setShowAiDinoModal(true)}
                     className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black text-xs sm:text-sm rounded-2xl shadow-sm hover:scale-105 transition-transform cursor-pointer flex items-center gap-1.5"
                   >
                     <Sparkles className="w-4 h-4 text-yellow-300 animate-spin" />
-                    <span>Dino Tạo Trò Chơi Mới (AI)</span>
+                    <span>Dino Tạo Game (AI)</span>
                   </button>
                 </div>
               </div>
@@ -372,7 +386,7 @@ export default function App() {
               <span>Ứng dụng giáo dục mầm non tương tác cao, kết nối Smart TV & HDMI</span>
             </div>
             <div className="text-slate-500 text-[11px]">
-              Tối ưu hóa 60FPS · Camera AR Biến Hình · Âm thanh sống động · Không giật lag
+              Tối ưu hóa 60FPS · Hệ thống Thành Tựu Nhỏ (Badges) · Âm thanh sống động
             </div>
           </div>
         </footer>
@@ -416,6 +430,13 @@ export default function App() {
             setActiveGame(newGame);
             setShowAiDinoModal(false);
           }}
+        />
+      )}
+
+      {showBadgesModal && (
+        <BadgesModal
+          onClose={() => setShowBadgesModal(false)}
+          starsCount={starsCount}
         />
       )}
     </div>

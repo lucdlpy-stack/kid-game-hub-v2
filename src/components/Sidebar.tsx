@@ -26,6 +26,7 @@ interface SidebarProps {
   onOpenArchitect: () => void;
   onOpenSync: () => void;
   onOpenAiDino: () => void;
+  onOpenBadges: () => void;
   activeFilter: 'all' | 'camera' | 'quiz' | 'matching_puzzle' | 'dynamic';
   onChangeFilter: (f: 'all' | 'camera' | 'quiz' | 'matching_puzzle' | 'dynamic') => void;
   isGameActive: boolean;
@@ -50,6 +51,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onOpenArchitect,
   onOpenSync,
   onOpenAiDino,
+  onOpenBadges,
   activeFilter,
   onChangeFilter,
   isGameActive,
@@ -142,16 +144,26 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           </div>
 
-          {/* Star Counter Pill */}
-          <div className="flex items-center justify-between p-3 bg-yellow-100/80 rounded-2xl border-2 border-yellow-300 shadow-inner">
+          {/* Star Counter & Badges Profile Pill - CLICK TO OPEN BADGES */}
+          <button
+            onClick={() => {
+              onOpenBadges();
+              setIsOpenMobile(false);
+            }}
+            className="w-full flex items-center justify-between p-3 bg-yellow-100/90 hover:bg-yellow-200/90 rounded-2xl border-2 border-yellow-300 shadow-inner cursor-pointer transition-transform active:scale-95 text-left"
+            title="Bấm để xem Thành Tựu Nhỏ và Huy Hiệu của bé!"
+          >
             <div className="flex items-center gap-2">
-              <span className="text-2xl animate-bounce">⭐</span>
-              <span className="text-xs font-black text-yellow-950">Ngôi sao của bé:</span>
+              <div className="w-8 h-8 rounded-full bg-yellow-400 text-yellow-950 flex items-center justify-center font-black text-base shadow-xs">
+                🏆
+              </div>
+              <div>
+                <div className="text-xs font-black text-yellow-950">Thành Tựu Nhỏ</div>
+                <div className="text-[10px] font-bold text-amber-800">Bé có {starsCount} sao ⭐</div>
+              </div>
             </div>
-            <span className="text-xl font-black text-amber-900 tabular-nums">
-              {starsCount}
-            </span>
-          </div>
+            <Award className="w-5 h-5 text-amber-700" />
+          </button>
 
           {/* Active Game Back Button */}
           {isGameActive && (

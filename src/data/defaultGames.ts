@@ -1,9 +1,269 @@
 import { Game } from '../types/game';
 
 export const DEFAULT_GAMES: Game[] = [
-  // === TRÒ CHƠI TÍCH HỢP TÍNH NĂNG CAMERA (TƯƠNG TÁC THỊ GIÁC, CHUYỂN ĐỘNG & BIẾN HÌNH) ===
+  // === DÒNG GAME 1: KỸ NĂNG SỐNG & AN TOÀN CHO BÉ (NHẬN BIẾT XE CỨU HỘ, HỎA HOẠN, NGƯỜI XẤU) ===
 
-  // 1. GAME CAMERA 1: BIẾN HÌNH NHÂN VẬT HOẠT HÌNH
+  // 1. GAME KỸ NĂNG: HỎA HOẠN
+  {
+    id: 'game_an_toan_hoa_hoan',
+    title: 'Bé Học Kỹ Năng Khi Gặp Hỏa Hoạn',
+    icon: '🧯',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé học cách lấy khăn ướt bịt mũi, bò khom lưng tránh khói và gọi chú lính cứu hỏa 114 khẩn cấp!',
+    badgeTheme: 'rose',
+    bannerImage: '/src/assets/images/kid_archery_fun_1794371559510.jpg',
+    interactiveQuestions: [
+      {
+        question: 'Khi thấy nhà có khói đen hoặc đám lửa, bé cần dùng cái gì bịt lên mũi miệng?',
+        options: ['Chiếc Khăn Ướt Mát', 'Bàn Tay Khô', 'Tờ Sách Giấy'],
+        optionEmojis: ['🧼', '✋', '📖'],
+        correctAnswer: 'Chiếc Khăn Ướt Mát',
+        timeLimit: 20,
+        hint: 'Khăn ướt giúp lọc bớt khói độc cho bé thở an toàn!',
+        soundType: 'bell',
+        emoji: '🧯'
+      },
+      {
+        question: 'Khi di chuyển thoát khỏi phòng có nhiều khói lửa, bé phải đi như thế nào?',
+        options: ['Bò Thấp Khom Lưng', 'Đứng Thẳng Chạy', 'Nhảy Tung Tăng'],
+        optionEmojis: ['🙇', '🚶', '🏃'],
+        correctAnswer: 'Bò Thấp Khom Lưng',
+        timeLimit: 20,
+        hint: 'Khói độc luôn bay lên cao, bò thấp giúp bé thở không khí sạch ở dưới!',
+        soundType: 'bell',
+        emoji: '🔥'
+      },
+      {
+        question: 'Số điện thoại khẩn cấp gọi Các Chú Lính Cứu Hỏa đến dập lửa là số mấy?',
+        options: ['Số 114 Cứu Hỏa', 'Số 113 Cảnh Sát', 'Số 115 Cấp Cứu'],
+        optionEmojis: ['🚒', '🚓', '🚑'],
+        correctAnswer: 'Số 114 Cứu Hỏa',
+        timeLimit: 20,
+        hint: 'Một Một Bốn là số gọi các chú lính cứu hỏa dũng cảm!',
+        soundType: 'car',
+        emoji: '📞'
+      },
+      {
+        question: 'Khi chạy ra ngoài an toàn, bé có nên quay lại lấy đồ chơi trong nhà lửa không?',
+        options: ['Không Quay Lại Nhà', 'Quay Lại Lấy Gấu Bông', 'Đi Tìm Đồ Chơi'],
+        optionEmojis: ['🛑', '🧸', '🔍'],
+        correctAnswer: 'Không Quay Lại Nhà',
+        timeLimit: 20,
+        hint: 'An toàn tính mạng của bé là quan trọng nhất!',
+        soundType: 'bell',
+        emoji: '🏠'
+      },
+      {
+        question: 'Chú lính cứu hỏa dũng cảm dùng dụng cụ nào để dập tắt đám lửa?',
+        options: ['Bình Cứu Hỏa & Vòi Nước', 'Cây Cọ Vẽ Tranh', 'Chiếc Quạt Giấy'],
+        optionEmojis: ['🧯', '🖌️', '🪭'],
+        correctAnswer: 'Bình Cứu Hỏa & Vòi Nước',
+        timeLimit: 20,
+        hint: 'Vòi nước phun mạnh giúp dập tắt lửa nhanh chóng!',
+        soundType: 'car',
+        emoji: '🚒'
+      },
+      {
+        question: 'Xe cứu hỏa chở nước đi chữa cháy thường có màu sắc gì rực rỡ?',
+        options: ['Màu Đỏ Tươi', 'Màu Đen Tuyền', 'Màu Xanh Biển'],
+        optionEmojis: ['🚒', '⬛', '🌊'],
+        correctAnswer: 'Màu Đỏ Tươi',
+        timeLimit: 20,
+        hint: 'Xe màu đỏ tươi có còi hụ vang xin đường cứu hỏa!',
+        soundType: 'car',
+        emoji: '🚨'
+      }
+    ]
+  },
+
+  // 2. GAME KỸ NĂNG: PHÒNG NGỪA NGƯỜI XẤU
+  {
+    id: 'game_phong_nguai_nguoi_xau',
+    title: 'Bé Tự Bảo Vệ Trước Người Lạ',
+    icon: '🚫',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé không nhận kẹo từ người lạ, hô to nhờ người xung quanh giúp đỡ và luôn nắm tay bố mẹ!',
+    badgeTheme: 'amber',
+    interactiveQuestions: [
+      {
+        question: 'Nếu một người lạ không quen biết cho bé kẹo bánh ngon, bé nên làm gì?',
+        options: ['Không Nhận Kẹo Lạ', 'Cầm Ngay Ăn Luôn', 'Đi Theo Người Lạ'],
+        optionEmojis: ['🙅', '🍬', '🚶'],
+        correctAnswer: 'Không Nhận Kẹo Lạ',
+        timeLimit: 20,
+        hint: 'Bé ngoan chỉ nhận kẹo khi có sự đồng ý của Bố Mẹ và Cô Giáo!',
+        soundType: 'bell',
+        emoji: '🍭'
+      },
+      {
+        question: 'Khi đi siêu thị hay công viên đông người, bé phải làm gì để không bị lạc?',
+        options: ['Nắm Chặt Tay Bố Mẹ', 'Tự Chạy Đi Chơi', 'Đi Theo Bạn Lạ'],
+        optionEmojis: ['👨‍👩‍👧', '🏃', '🚸'],
+        correctAnswer: 'Nắm Chặt Tay Bố Mẹ',
+        timeLimit: 20,
+        hint: 'Luôn đi bên cạnh Bố Mẹ giúp bé luôn an toàn tuyệt đối!',
+        soundType: 'bell',
+        emoji: '🤝'
+      },
+      {
+        question: 'Nếu người lạ cố tình nắm tay kéo bé đi, bé phải phản ứng thế nào?',
+        options: ['Hô Thật To Cứu Với', 'Im Lặng Đi Theo', 'Mỉm Cười Cùng Đi'],
+        optionEmojis: ['🗣️', '🤫', '😊'],
+        correctAnswer: 'Hô Thật To Cứu Với',
+        timeLimit: 20,
+        hint: 'Hô to "Cứu cháu với! Cháu không biết người này!" để mọi người xung quanh giúp đỡ!',
+        soundType: 'bell',
+        emoji: '📣'
+      },
+      {
+        question: 'Số điện thoại khẩn cấp gọi Các Chú Cảnh Sát bảo vệ an ninh là số mấy?',
+        options: ['Số 113 Cảnh Sát', 'Số 114 Cứu Hỏa', 'Số 115 Cấp Cứu'],
+        optionEmojis: ['🚓', '🚒', '🚑'],
+        correctAnswer: 'Số 113 Cảnh Sát',
+        timeLimit: 20,
+        hint: 'Một Một Ba là số gọi chú cảnh sát giao thông và cảnh sát trật tự!',
+        soundType: 'car',
+        emoji: '🚨'
+      },
+      {
+        question: 'Khi ở nhà một mình có ai đó gõ cửa xưng là người quen, bé phải làm gì?',
+        options: ['Không Mở Cửa Người Lạ', 'Mở Cửa Ngay', 'Mời Vào Nhà'],
+        optionEmojis: ['🔒', '🚪', '🛋️'],
+        correctAnswer: 'Không Mở Cửa Người Lạ',
+        timeLimit: 20,
+        hint: 'Bé nhớ khóa cửa cẩn thận và gọi người thân trong nhà!',
+        soundType: 'bell',
+        emoji: '🔑'
+      },
+      {
+        question: 'Những vùng riêng tư trên cơ thể bé (như vùng mặc đồ bơi), người lạ có được chạm vào không?',
+        options: ['Tuyệt Đối Không', 'Cho Người Lạ Chạm', 'Tùy Ý Người Lạ'],
+        optionEmojis: ['🛑', '👋', '❓'],
+        correctAnswer: 'Tuyệt Đối Không',
+        timeLimit: 20,
+        hint: 'Cơ thể bé là của riêng bé, tuyệt đối không ai được xâm phạm!',
+        soundType: 'bell',
+        emoji: '🛡️'
+      }
+    ]
+  },
+
+  // 3. GAME KỸ NĂNG: XE CỨU HỘ & CẢNH SÁT
+  {
+    id: 'game_biet_doi_xe_cap_cuu',
+    title: 'Biệt Đội Xe Cảnh Sát & Cứu Hộ',
+    icon: '🚓',
+    ageGroup: '3-5 tuổi',
+    gameType: 'quiz',
+    description: 'Bé nhận biết âm thanh còi hụ vang và nhiệm vụ của Xe Cảnh Sát 113, Xe Cứu Hỏa 114 và Xe Cấp Cứu 115!',
+    badgeTheme: 'rose',
+    interactiveQuestions: [
+      {
+        question: 'Xe gì màu trắng có cờ Chữ Thập Đỏ chở bệnh nhân và bác sĩ đến bệnh viện?',
+        options: ['Xe Cấp Cứu 115', 'Xe Cảnh Sát 113', 'Xe Cứu Hỏa 114'],
+        optionEmojis: ['🚑', '🚓', '🚒'],
+        correctAnswer: 'Xe Cấp Cứu 115',
+        timeLimit: 20,
+        hint: 'Xe cấp cứu có chuông bíp bíp khẩn cấp chở bác sĩ cứu chữa người bệnh!',
+        soundType: 'car',
+        emoji: '🚑'
+      },
+      {
+        question: 'Xe gì màu xanh trắng có đèn nháy tròn trên trần do Các Chú Cảnh Sát đi tuần tra?',
+        options: ['Xe Cảnh Sát 113', 'Xe Cứu Hỏa 114', 'Xe Chở Rác'],
+        optionEmojis: ['🚓', '🚒', '🚛'],
+        correctAnswer: 'Xe Cảnh Sát 113',
+        timeLimit: 20,
+        hint: 'Chú cảnh sát đi xe này giữ gìn trật tự và an toàn giao thông!',
+        soundType: 'car',
+        emoji: '🚓'
+      },
+      {
+        question: 'Số điện thoại khẩn cấp gọi Xe Cấp Cứu chở bệnh nhân đến bệnh viện là số mấy?',
+        options: ['Số 115 Cấp Cứu', 'Số 113 Cảnh Sát', 'Số 114 Cứu Hỏa'],
+        optionEmojis: ['🚑', '🚓', '🚒'],
+        correctAnswer: 'Số 115 Cấp Cứu',
+        timeLimit: 20,
+        hint: 'Một Một Năm là tổng đài y tế cấp cứu!',
+        soundType: 'car',
+        emoji: '🏥'
+      },
+      {
+        question: 'Khi thấy xe cảnh sát hoặc xe cấp cứu hụ còi ưu tiên trên đường, các xe khác phải làm gì?',
+        options: ['Tản Sang Bên Dường', 'Chạy Chắn Trước', 'Dừng Giữa Đường'],
+        optionEmojis: ['🔀', '🚘', '🛑'],
+        correctAnswer: 'Tản Sang Bên Dường',
+        timeLimit: 20,
+        hint: 'Nhường đường cho xe khẩn cấp làm nhiệm vụ cứu người!',
+        soundType: 'car',
+        emoji: '🚨'
+      },
+      {
+        question: 'Bác sĩ và Cô y tá mặc trang phục màu gì để chăm sóc sức khỏe cho bé?',
+        options: ['Áo Blouse Trắng', 'Bộ Đồ Màu Đen', 'Áo Vàng Rực'],
+        optionEmojis: ['👩‍⚕️', '🥷', '🦺'],
+        correctAnswer: 'Áo Blouse Trắng',
+        timeLimit: 20,
+        hint: 'Áo blouse trắng tinh khiết hiền từ của ngành y tế!',
+        soundType: 'bell',
+        emoji: '🩺'
+      },
+      {
+        question: 'Chú Cảnh Sát Giao Thông thổi còi cầm gậy chỉ dẫn xe cộ để làm gì?',
+        options: ['Đường Xá An Toàn', 'Cho Đường Tắc Nghẽn', 'Cho Xe Chạy Hỗn Sạn'],
+        optionEmojis: ['✅', '❌', '⚠️'],
+        correctAnswer: 'Đường Xá An Toàn',
+        timeLimit: 20,
+        hint: 'Giúp giao thông luôn thông thoáng và mọi người đi lại an toàn!',
+        soundType: 'bell',
+        emoji: '👮'
+      }
+    ]
+  },
+
+  // 4. GAME GHÉP HÌNH AN TOÀN: GHÉP XE CỨU HỘ & SỐ ĐIỆN THOẠI KHẨN CẤP
+  {
+    id: 'game_ghephinh_xe_cuu_ho',
+    title: 'Ghép Đôi Xe Cứu Hộ & Số Khẩn Cấp',
+    icon: '☎️',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Bé ghép Xe Cảnh Sát 🚓 với 113, Xe Cứu Hỏa 🚒 với 114, Xe Cấp Cứu 🚑 với 115!',
+    badgeTheme: 'rose',
+    puzzlePairs: [
+      { id: 'p1', name: 'Xe Cảnh Sát Tuần Tra', symbol: '🚓', matchTarget: 'Tổng Đài 113 Cảnh Sát', targetSymbol: '📞', hint: 'Gọi 113 khi cần chú cảnh sát hỗ trợ an ninh!' },
+      { id: 'p2', name: 'Xe Cứu Hỏa Chữa Cháy', symbol: '🚒', matchTarget: 'Tổng Đài 114 Cứu Hỏa', targetSymbol: '🧯', hint: 'Gọi 114 khi có sự cố hỏa hoạn cháy nổ!' },
+      { id: 'p3', name: 'Xe Cấp Cứu Y Tế', symbol: '🚑', matchTarget: 'Tổng Đài 115 Y Tế', targetSymbol: '🏥', hint: 'Gọi 115 khi cần bác sĩ cấp cứu bệnh nhân!' },
+      { id: 'p4', name: 'Đèn Giao Thông Đỏ', symbol: '🚦', matchTarget: 'Dừng Xe An Toàn', targetSymbol: '🛑', hint: 'Đèn đỏ báo hiệu dừng xe chờ đợi an toàn!' },
+      { id: 'p5', name: 'Chú Cứu Hỏa Dũng Cảm', symbol: '👨‍🚒', matchTarget: 'Vòi Phun Nước Mạnh', targetSymbol: '💦', hint: 'Vòi phun nước dập tắt lửa nhanh chóng!' },
+      { id: 'p6', name: 'Chú Cảnh Sát Giao Thông', symbol: '👮', matchTarget: 'Còi & Gậy Chỉ Đường', targetSymbol: '🦺', hint: 'Chỉ dẫn giao thông đi lại an toàn!' }
+    ]
+  },
+
+  // 5. GAME GHÉP HÌNH AN TOÀN: GHÉP ĐỒ DÙNG BẢO VỆ AN TOÀN
+  {
+    id: 'game_ghephinh_do_dung_an_toan',
+    title: 'Ghép Đồ Dùng Bảo VỆ An Toàn',
+    icon: '⛑️',
+    ageGroup: '3-5 tuổi',
+    gameType: 'matching_puzzle',
+    description: 'Bé ghép Mũ bảo hiểm ⛑️ với Xe đạp 🚲, Áo phao 🦺 với Bơi lội 🏊, Bình cứu hỏa 🧯 với Đám lửa 🔥!',
+    badgeTheme: 'indigo',
+    puzzlePairs: [
+      { id: 'p1', name: 'Mũ Bảo Hiểm Xinh', symbol: '⛑️', matchTarget: 'Bé Tập Đi Xe Đạp', targetSymbol: '🚲', hint: 'Bé đội mũ bảo hiểm bảo vệ đầu khi tập đi xe đạp!' },
+      { id: 'p2', name: 'Áo Phao Bơi Cứu Sinh', symbol: '🦺', matchTarget: 'Bé Tập Bơi Dưới Ao', targetSymbol: '🏊', hint: 'Mặc áo phao giúp bé nổi an toàn khi tập bơi!' },
+      { id: 'p3', name: 'Bình Cứu Hỏa Đỏ', symbol: '🧯', matchTarget: 'Đám Lửa Nhỏ', targetSymbol: '🔥', hint: 'Dùng bình cứu hỏa dập tắt ngọn lửa nhỏ!' },
+      { id: 'p4', name: 'Dây An Toàn Ô Ô', symbol: '🎗️', matchTarget: 'Ghế Ngồi Xe Ô Ô', targetSymbol: '🚘', hint: 'Bé thắt dây an toàn khi ngồi trên ô tô!' },
+      { id: 'p5', name: 'Kính Bảo Hộ Mắt', symbol: '🥽', matchTarget: 'Bé Tập Thí Nghiệm', targetSymbol: '🧪', hint: 'Bảo vệ đôi mắt bé luôn an toàn rực rỡ!' },
+      { id: 'p6', name: 'Khăn Ứơt Lau Mặt', symbol: '🧼', matchTarget: 'Khói Đen Hỏa Hoạn', targetSymbol: '🌫️', hint: 'Bịt khăn ướt lên mũi miệng tránh hít khói độc!' }
+    ]
+  },
+
+  // === DÒNG GAME 2: TRÒ CHƠI TÍCH HỢP TÍNH NĂNG CAMERA (TƯƠNG TÁC THỊ GIÁC, CHUYỂN ĐỘNG & BIẾN HÌNH) ===
+
+  // 6. GAME CAMERA: BIẾN HÌNH NHÂN VẬT HOẠT HÌNH
   {
     id: 'game_camera_transform',
     title: 'Biến Hình Nhân Vật Hoạt Hình',
@@ -15,7 +275,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_camera_faces_1794370847143.jpg'
   },
 
-  // 2. GAME CAMERA 2: BÉ BẮT BONG BÓNG & QUẢ NGỌT
+  // 7. GAME CAMERA: BÉ BẮT BONG BÓNG & QUẢ NGỌT
   {
     id: 'game_camera_bubbles',
     title: 'Bé Bắt Bong Bóng & Quả Ngọt',
@@ -27,7 +287,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_camera_bubbles_1794368979884.jpg'
   },
 
-  // 3. GAME CAMERA 3: GƯƠNG THẦN BIỂU CẢM & MẶT NẠ VUI NHỘN
+  // 8. GAME CAMERA: GƯƠNG THẦN BIỂU CẢM & MẶT NẠ VUI NHỘN
   {
     id: 'game_camera_faces',
     title: 'Gương Thần Biểu Cảm & Mặt Nạ Vui',
@@ -39,7 +299,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_camera_faces_1794370847143.jpg'
   },
 
-  // 4. GAME CAMERA 4: VŨ ĐIỆU BẮT SAO VŨ TRỤ
+  // 9. GAME CAMERA: VŨ ĐIỆU BẮT SAO VŨ TRỤ
   {
     id: 'game_camera_stars',
     title: 'Vũ Điệu Bắt Sao Vũ Trụ',
@@ -48,12 +308,12 @@ export const DEFAULT_GAMES: Game[] = [
     gameType: 'camera_stars',
     description: 'Các ngôi sao băng lấp lánh đang rơi! Bé dùng 2 bàn tay hứng sao vào chiếc giỏ ma thuật cùng bạn Khủng Long Dino!',
     badgeTheme: 'indigo',
-    bannerImage: '/src/assets/images/kid_camera_stars_1794370846892.jpg'
+    bannerImage: '/src/assets/images/kid_camera_stars_1794368979884.jpg'
   },
 
-  // === CÁC TRÒ CHƠI NĂNG ĐỘNG, BẮN CUNG, VƯỢT CHƯỚNG NGẠI VẬT & ĐUA XE ===
+  // === DÒNG GAME 3: NĂNG ĐỘNG, BẮN CUNG, VƯỢT CHƯỚNG NGẠI VẬT & ĐUA XE CẢNH SÁT ===
 
-  // 5. GAME BẮN CUNG TÊN: BẮN CUNG TÊN QUẢ NGỌT & BONG BÓNG
+  // 10. GAME BẮN CUNG: BẮN CUNG TÊN QUẢ NGỌT & BONG BÓNG
   {
     id: 'game_archery_fun',
     title: 'Bắn Cung Tên Quả Ngọt & Bong Bóng',
@@ -65,7 +325,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_archery_fun_1794371559510.jpg'
   },
 
-  // 6. GAME VƯỢT CHƯỚNG NGẠI VẬT: CUỘC PHIÊU LƯU VƯỢT CHƯỚNG NGẠI VẬT
+  // 11. GAME VƯỢT CHƯỚNG NGẠI VẬT: CUỘC PHIÊU LƯU VƯỢT CHƯỚNG NGẠI VẬT
   {
     id: 'game_obstacle_runner',
     title: 'Vượt Chướng Ngại Vật Khỏe Vui',
@@ -77,7 +337,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_runner_jump_1794371559321.jpg'
   },
 
-  // 7. GAME ĐUA XE: ĐUA XE THÚ CƯNG CẦU VỒNG
+  // 12. GAME ĐUA XE: ĐUA XE THÚ CƯNG CẦU VỒNG
   {
     id: 'game_pet_racing',
     title: 'Đua Xe Thú Cưng Cầu Vồng',
@@ -89,7 +349,7 @@ export const DEFAULT_GAMES: Game[] = [
     bannerImage: '/src/assets/images/kid_pet_racing_1794368980202.jpg'
   },
 
-  // 8. GAME ÂM NHẠC: ĐÀN PHÍM MA THUẬT & ÂM THANH
+  // 13. GAME ÂM NHẠC: ĐÀN PHÍM MA THUẬT & ÂM THANH
   {
     id: 'game_music_piano',
     title: 'Đàn Phím Âm Nhạc & Muông Thú',
@@ -100,7 +360,7 @@ export const DEFAULT_GAMES: Game[] = [
     badgeTheme: 'indigo'
   },
 
-  // 9. GAME VẬN ĐỘNG: VÒNG QUAY VẬN ĐỘNG KHỎE VUI
+  // 14. GAME VẬN ĐỘNG: VÒNG QUAY VẬN ĐỘNG KHỎE VUI
   {
     id: 'game_action_wheel',
     title: 'Vòng Quay Vận Động Khỏe Vui',
@@ -111,9 +371,9 @@ export const DEFAULT_GAMES: Game[] = [
     badgeTheme: 'cyan'
   },
 
-  // === GHÉP HÌNH DỄ THƯƠNG (CUTE MATCHING PUZZLES) ===
+  // === DÒNG GAME 4: GHÉP HÌNH DỄ THƯƠNG (CUTE MATCHING PUZZLES) ===
 
-  // 10. GAME GHÉP HÌNH: GHÉP ĐỒ CHƠI XINH YÊU
+  // 15. GAME GHÉP HÌNH: GHÉP ĐỒ CHƠI XINH YÊU
   {
     id: 'game_ghephinh_do_choi',
     title: 'Ghép Đồ Chơi Xinh Yêu Cho Bé',
@@ -132,7 +392,7 @@ export const DEFAULT_GAMES: Game[] = [
     ]
   },
 
-  // 11. GAME GHÉP HÌNH: VŨ TRỤ KỲ THÚ
+  // 16. GAME GHÉP HÌNH: VŨ TRỤ KỲ THÚ
   {
     id: 'game_ghephinh_vu_tru',
     title: 'Ghép Đôi Vũ Trụ Kỳ Thú',
@@ -151,7 +411,7 @@ export const DEFAULT_GAMES: Game[] = [
     ]
   },
 
-  // 12. GAME GHÉP HÌNH: THỨC ĂN MUÔNG THÚ
+  // 17. GAME GHÉP HÌNH: THỨC ĂN MUÔNG THÚ
   {
     id: 'game_ghephinh_thuc_an_dong_vat',
     title: 'Ghép Thức Ăn Cho Muông Thú',
@@ -170,7 +430,7 @@ export const DEFAULT_GAMES: Game[] = [
     ]
   },
 
-  // 13. GAME GHÉP HÌNH: NGHỀ NGHIỆP & DỤNG CỤ
+  // 18. GAME GHÉP HÌNH: NGHỀ NGHIỆP & DỤNG CỤ
   {
     id: 'game_ghephinh_nghe_nghiep',
     title: 'Bé Ghép Nghề Nghiệp & Dụng Cụ',
@@ -189,9 +449,9 @@ export const DEFAULT_GAMES: Game[] = [
     ]
   },
 
-  // === QUIZ GAMES ===
+  // === DÒNG GAME 5: QUIZ GIÁO DỤC MẦM NON KHÁC ===
 
-  // 14. GAME ĐỐ VUI: ĐỘNG VẬT VUI NHỘN
+  // 19. GAME ĐỐ VUI: ĐỘNG VẬT VUI NHỘN
   {
     id: 'game_dong_vat_vui_nhon',
     title: 'Thế Giới Động Vật Vui Nhộn',
@@ -274,80 +534,7 @@ export const DEFAULT_GAMES: Game[] = [
     ]
   },
 
-  // 15. GAME ĐỐ VUI: XE CỘ & AN TOÀN GIAO THÔNG
-  {
-    id: 'game_xe_co_giao_thong',
-    title: 'Bé Nhận Biết Xe Cộ & Giao Thông',
-    icon: '🚗',
-    ageGroup: '3-5 tuổi',
-    gameType: 'quiz',
-    description: 'Hình ảnh xe cộ to rõ với còi hụ vui nhộn cho bé nhận biết an toàn giao thông!',
-    badgeTheme: 'rose',
-    interactiveQuestions: [
-      {
-        question: 'Xe gì màu đỏ tươi, có còi hụ vang và chở nước đi dập lửa?',
-        options: ['Xe Cứu Hỏa', 'Xe Cứu Thương', 'Xe Buýt Lớn'],
-        optionEmojis: ['🚒', '🚑', '🚌'],
-        correctAnswer: 'Xe Cứu Hỏa',
-        timeLimit: 20,
-        hint: 'Các chú lính cứu hỏa dũng cảm luôn đi chiếc xe này!',
-        soundType: 'car',
-        emoji: '🚒'
-      },
-      {
-        question: 'Phương tiện nào có hai cánh to, bay lượn trên bầu trời xanh cùng mây trắng?',
-        options: ['Máy Bay', 'Tàu Hỏa', 'Thuyền Buồm'],
-        optionEmojis: ['✈️', '🚂', '⛵'],
-        correctAnswer: 'Máy Bay',
-        timeLimit: 20,
-        hint: 'Máy bay chở mọi người bay qua những đám mây!',
-        soundType: 'bell',
-        emoji: '✈️'
-      },
-      {
-        question: 'Khi đi bộ sang đường gặp Đèn Giao Thông ĐỎ, bé phải làm gì?',
-        options: ['Dừng Lại Chờ Đợi', 'Chạy Thật Nhanh', 'Băng Qua Ngay'],
-        optionEmojis: ['🛑', '🏃', '🚶'],
-        correctAnswer: 'Dừng Lại Chờ Đợi',
-        timeLimit: 20,
-        hint: 'Đèn đỏ báo hiệu dừng lại an toàn cho mọi người!',
-        soundType: 'bell',
-        emoji: '🚦'
-      },
-      {
-        question: 'Xe gì có 2 bánh, có chuông reo "Kính coong" và bàn đạp cho bé đạp đi dạo?',
-        options: ['Xe Đạp Xinh', 'Xe Ô Tô', 'Tàu Thủy'],
-        optionEmojis: ['🚲', '🚗', '🚢'],
-        correctAnswer: 'Xe Đạp Xinh',
-        timeLimit: 20,
-        hint: 'Bé nhớ đội mũ bảo hiểm khi tập đi xe đạp nhé!',
-        soundType: 'bell',
-        emoji: '🚲'
-      },
-      {
-        question: 'Đoàn tàu gì dài thật dài, chạy xình xịch trên đường ray sắt?',
-        options: ['Tàu Hỏa', 'Xe Tải Nặng', 'Xe Xích Lô'],
-        optionEmojis: ['🚂', '🚛', '🛺'],
-        correctAnswer: 'Tàu Hỏa',
-        timeLimit: 20,
-        hint: 'Đoàn tàu có nhiều toa nối đuôi nhau tu tu xình xịch!',
-        soundType: 'bell',
-        emoji: '🚂'
-      },
-      {
-        question: 'Xe gì có còi hụ gấp gáp, chữ thập đỏ và đưa người bệnh đến bệnh viện cấp cứu?',
-        options: ['Xe Cứu Thương', 'Xe Cẩu', 'Xe Rác'],
-        optionEmojis: ['🚑', '🏗️', '🚛'],
-        correctAnswer: 'Xe Cứu Thương',
-        timeLimit: 20,
-        hint: 'Bác sĩ và y tá đi trên chiếc xe này để giúp đỡ bệnh nhân!',
-        soundType: 'car',
-        emoji: '🚑'
-      }
-    ]
-  },
-
-  // 16. GAME ĐỐ VUI: SẮC MÀU & HÌNH KHỐI
+  // 20. GAME ĐỐ VUI: SẮC MÀU & HÌNH KHỐI
   {
     id: 'game_sac_mau_hinh_khoi',
     title: 'Sắc Màu & Hình Khối Thần Kỳ',

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { recordBadgeProgress } from '../services/badgeService';
 import { Camera, CameraOff, ArrowLeft, RotateCcw, Volume2, Sparkles, Wand2, Image as ImageIcon } from 'lucide-react';
 import { playCorrectSound, playClickSound, playVictoryFanfare, speakVietnamese } from '../utils/audio';
 
@@ -98,6 +99,7 @@ export const CameraTransformGameView: React.FC<CameraTransformGameViewProps> = (
         videoRef.current.play();
       }
       setCameraActive(true);
+      recordBadgeProgress('camera', 1);
       speakVietnamese('Bé đứng trước camera và chọn nhân vật hoạt hình bé yêu thích để biến hình nhé!');
     } catch (err) {
       console.warn('Camera start error:', err);
@@ -135,6 +137,8 @@ export const CameraTransformGameView: React.FC<CameraTransformGameViewProps> = (
       spread: 60,
       origin: { y: 0.6 }
     });
+
+    recordBadgeProgress('camera', 1);
   };
 
   const takeSnapshot = () => {
@@ -149,6 +153,7 @@ export const CameraTransformGameView: React.FC<CameraTransformGameViewProps> = (
     });
 
     onRewardStar();
+    recordBadgeProgress('camera', 1);
     speakVietnamese(`Tách! Bức hình ${hero.name} của bé siêu ngầu!`);
 
     if (videoRef.current) {

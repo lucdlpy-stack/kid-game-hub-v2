@@ -8,6 +8,7 @@ interface HeroBannerProps {
   onQuickStart: () => void;
   tvRemoteVisible: boolean;
   onToggleTvRemote: () => void;
+  onOpenBadges?: () => void;
 }
 
 export const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -15,10 +16,11 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   totalStars,
   onQuickStart,
   tvRemoteVisible,
-  onToggleTvRemote
+  onToggleTvRemote,
+  onOpenBadges
 }) => {
   const handleWelcomeSpeech = () => {
-    speakVietnamese('Chào mừng các bé yêu đến với Kid Game Hub! Chúng mình cùng chơi đố vui và ghép hình thông minh nhé!');
+    speakVietnamese('Chào mừng các bé yêu đến với Kid Game Hub! Chúng mình cùng chơi đố vui, ghép hình và nhận huy hiệu thành tựu nhé!');
   };
 
   return (
@@ -49,7 +51,7 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             </h1>
 
             <p className="text-base sm:text-lg text-slate-700 font-bold mb-5 leading-relaxed">
-              Thế giới trò chơi hoạt hình rực rỡ với âm thanh sống động, câu đố nhận biết, ghép đôi vũ trụ & muông thú. Nút bấm siêu to thích hợp cho Smart TV và máy tính bảng!
+              Thế giới trò chơi hoạt hình rực rỡ với camera biến hình, bắn cung tên, đua xe kịch tính & ghép hình dễ thương. Nút bấm siêu to thích hợp cho Smart TV và máy tính màn hình lớn!
             </p>
 
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
@@ -84,28 +86,38 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
             </div>
           </div>
 
-          {/* Right Mascot Zone */}
+          {/* Right Mascot Zone - CLICK TO OPEN BADGES MODAL */}
           <div className="relative z-10 shrink-0 flex flex-col items-center">
-            <div className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl bg-amber-100 p-1 group">
+            <button
+              onClick={onOpenBadges}
+              title="Bấm vào ảnh đại diện để xem Bảng Huy Hiệu Thành Tựu Nhỏ của bé!"
+              className="relative w-44 h-44 sm:w-52 sm:h-52 rounded-3xl overflow-hidden border-4 border-amber-300 shadow-2xl bg-amber-100 p-1 group cursor-pointer hover:scale-105 transition-transform"
+            >
               <img
                 src="/src/assets/images/kid_mascot_star_1794364848021.jpg"
-                alt="Kid Game Hub Mascot"
+                alt="Kid Game Hub Mascot Avatar"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-300"
               />
-              <div className="absolute bottom-2 left-2 right-2 bg-black/60 backdrop-blur-sm rounded-xl py-1 text-center">
-                <p className="text-[11px] font-black text-yellow-300 tracking-wider">
-                  BẠN KHỦNG LONG & HỔ CON
+              <div className="absolute top-2 right-2 bg-yellow-400 text-yellow-950 p-1.5 rounded-full shadow-lg border border-white animate-bounce">
+                <Award className="w-5 h-5" />
+              </div>
+              <div className="absolute bottom-2 left-2 right-2 bg-black/70 backdrop-blur-sm rounded-xl py-1 text-center">
+                <p className="text-[11px] font-black text-yellow-300 tracking-wider flex items-center justify-center gap-1">
+                  <span>🏆 BẢNG HUY HIỆU BÉ</span>
                 </p>
               </div>
-            </div>
+            </button>
 
             {/* Quick stats badges */}
             <div className="mt-3 flex items-center gap-3">
-              <div className="px-3 py-1 bg-amber-100 border border-amber-300 rounded-xl text-xs font-black text-amber-900 flex items-center gap-1.5 shadow-sm">
-                <span>📚</span>
-                <span>{totalGames} trò chơi</span>
-              </div>
+              <button
+                onClick={onOpenBadges}
+                className="px-3 py-1 bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-xl text-xs font-black text-amber-900 flex items-center gap-1.5 shadow-sm cursor-pointer"
+              >
+                <span>🏆</span>
+                <span>Thành Tựu Nhỏ</span>
+              </button>
               <div className="px-3 py-1 bg-yellow-100 border border-yellow-300 rounded-xl text-xs font-black text-yellow-900 flex items-center gap-1.5 shadow-sm">
                 <span>⭐</span>
                 <span>{totalStars} sao thưởng</span>

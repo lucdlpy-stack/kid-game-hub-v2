@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { QuizGame, QuizQuestion } from '../types/game';
+import { recordBadgeProgress } from '../services/badgeService';
 import {
   playCorrectSound,
   playWrongSound,
@@ -18,7 +19,6 @@ interface QuizGameViewProps {
   soundEnabled: boolean;
 }
 
-// Map common toddler words to colorful visual emojis if not explicitly in optionEmojis
 function getFallbackEmoji(optionText: string, idx: number): string {
   const lower = optionText.toLowerCase();
   if (lower.includes('chó') || lower.includes('cún')) return '🐶';
@@ -80,7 +80,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
     }
   }, [currentIndex, currentQ, soundEnabled]);
 
-  // Keyboard navigation for Smart TV Remote (Arrow Left/Right/Up/Down, Enter, 1-4)
+  // Keyboard navigation for Smart TV Remote
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isCompleted) {
@@ -122,13 +122,12 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
   }, [currentQ, focusedOptionIdx, isCompleted, onExit]);
 
   const handleOptionSelect = (option: string) => {
-    if (answerState === 'correct') return; // already answered correctly
+    if (answerState === 'correct') return;
 
     setSelectedOption(option);
     const isCorrect = option === currentQ.correctAnswer;
 
     if (isCorrect) {
-      // 1. NHÁY XANH KHI ĐÚNG
       setAnswerState('correct');
       if (soundEnabled) {
         if (currentQ.soundType) {
@@ -138,7 +137,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         }
       }
 
-      // Confetti burst
       confetti({
         particleCount: 90,
         spread: 75,
@@ -149,7 +147,9 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
       onRewardStar();
       setCorrectCount((prev) => prev + 1);
 
-      // Advance after friendly delay
+      // Record badge progress for Quiz Genius!
+      recordBadgeProgress('quiz', 1);
+
       setTimeout(() => {
         if (currentIndex < game.interactiveQuestions.length - 1) {
           setCurrentIndex((prev) => prev + 1);
@@ -166,7 +166,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         }
       }, 1400);
     } else {
-      // 2. NHÁY ĐỎ KHI SAI
       setAnswerState('wrong');
       if (soundEnabled) {
         playWrongSound();
@@ -174,7 +173,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
       speakVietnamese('Chưa đúng rồi! Bé thử chọn lại nhé!');
       setShowHint(true);
 
-      // Reset after 1s so child can try again smoothly without freezing
       setTimeout(() => {
         setAnswerState('idle');
       }, 1000);
@@ -195,7 +193,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
     setShowHint(false);
   };
 
-  // Celebration Screen on Game Completion
   if (isCompleted) {
     return (
       <div className="max-w-4xl mx-auto py-8 px-4 text-center">
@@ -275,21 +272,18 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         </div>
       </div>
 
-      {/* Main Question Card - Visual Spotlight for Preschoolers */}
+      {/* Question Card */}
       <div className="bg-gradient-to-b from-white via-amber-50/60 to-orange-50/50 rounded-3xl p-5 sm:p-8 border-4 border-amber-300 shadow-xl mb-6 text-center relative overflow-hidden">
-        {/* Large Visual Mascot / Question Emoji Spotlight */}
         <div className="flex items-center justify-center gap-4 mb-3">
           <div className="w-24 h-24 sm:w-28 sm:h-28 bg-gradient-to-tr from-amber-200 to-orange-200 rounded-3xl border-3 border-amber-400 shadow-md flex items-center justify-center text-5xl sm:text-6xl animate-bounce">
             {currentQ.emoji || '❓'}
           </div>
         </div>
 
-        {/* Question Text */}
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-snug mb-3">
           {currentQ.question}
         </h2>
 
-        {/* Voice Read Button for 3-5yo kids */}
         <div className="flex justify-center mb-1">
           <button
             onClick={handleReadQuestion}
@@ -300,7 +294,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
           </button>
         </div>
 
-        {/* Hint Box if user got wrong */}
         {showHint && currentQ.hint && (
           <div className="mt-3 p-3 bg-amber-100 border-2 border-amber-400 rounded-2xl text-amber-950 font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 animate-bounce">
             <HelpCircle className="w-5 h-5 text-amber-700 shrink-0" />
@@ -309,7 +302,7 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         )}
       </div>
 
-      {/* 100% VISUAL ANSWER CHOICES - Huge Cartoon Badges with Picture-First UX */}
+      {/* Answer options */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6">
         {currentQ.options.map((option, idx) => {
           const isSelected = selectedOption === option;
@@ -320,11 +313,9 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
 
           if (isSelected) {
             if (answerState === 'correct') {
-              // FLASH GREEN EFFECT (Nháy xanh khi đúng)
               cardStyle =
                 'bg-emerald-500 border-emerald-600 text-white shadow-2xl shadow-emerald-400/60 scale-105 animate-flash-green';
             } else if (answerState === 'wrong') {
-              // FLASH RED EFFECT (Nháy đỏ khi sai)
               cardStyle =
                 'bg-rose-500 border-rose-600 text-white shadow-2xl shadow-rose-400/60 animate-shake';
             }
@@ -341,22 +332,18 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
                 isFocused ? 'tv-focused' : ''
               } tv-focus-ring`}
             >
-              {/* Remote TV Shortcut Pill */}
               <span className="absolute top-3 left-4 text-[11px] font-black px-2.5 py-0.5 rounded-full bg-black/10">
                 Phím {idx + 1}
               </span>
 
-              {/* HUGE VISUAL GRAPHIC FOR TODDLERS */}
               <div className="text-5xl sm:text-6xl my-1 animate-pulse-subtle filter drop-shadow">
                 {visualEmoji}
               </div>
 
-              {/* Option Text Label */}
               <span className="text-lg sm:text-xl text-center px-2 font-black leading-tight">
                 {option}
               </span>
 
-              {/* Visual status indicators */}
               {isSelected && answerState === 'correct' && (
                 <div className="flex items-center gap-1.5 text-sm font-black text-yellow-200 mt-1 animate-bounce">
                   <CheckCircle2 className="w-6 h-6 text-white" />
@@ -375,7 +362,6 @@ export const QuizGameView: React.FC<QuizGameViewProps> = ({
         })}
       </div>
 
-      {/* Smart TV Remote Navigation Reminder */}
       <div className="p-3 bg-white/80 rounded-2xl border border-amber-200 text-center text-xs sm:text-sm font-bold text-slate-600 shadow-xs">
         📺 <span className="font-extrabold text-amber-900">Mẹo Smart TV / HDMI:</span> Dùng các phím mũi tên [← →] hoặc bấm số [1] [2] [3] trên điều khiển để chọn đáp án tương ứng với hình ảnh!
       </div>

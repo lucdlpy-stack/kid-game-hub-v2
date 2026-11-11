@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { MatchingPuzzleGame, PuzzlePair } from '../types/game';
+import { recordBadgeProgress } from '../services/badgeService';
 import {
   playCorrectSound,
   playWrongSound,
@@ -106,6 +107,9 @@ export const MatchingPuzzleView: React.FC<MatchingPuzzleViewProps> = ({
 
       // Check if all pairs are solved
       if (nextMatched.length === game.puzzlePairs.length) {
+        // Record progress towards "Chuyên Gia Ghép Hình" badge!
+        recordBadgeProgress('puzzle', 1);
+
         setTimeout(() => {
           setIsCompleted(true);
           if (soundEnabled) {

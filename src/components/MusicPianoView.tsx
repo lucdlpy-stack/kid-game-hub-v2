@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { recordBadgeProgress } from '../services/badgeService';
 import { ArrowLeft, RotateCcw, Volume2, Sparkles, Music } from 'lucide-react';
 import { playClickSound, speakVietnamese } from '../utils/audio';
 
@@ -35,10 +36,7 @@ export const MusicPianoView: React.FC<MusicPianoViewProps> = ({
   soundEnabled
 }) => {
   const [activeKey, setActiveKey] = useState<string | null>(null);
-  const [mode, setMode] = useState<'free' | 'song'>('free');
-  const [songStep, setSongStep] = useState<number>(0);
 
-  // Play audio frequency with pure Web Audio API
   const playFrequency = (freq: number) => {
     try {
       const AudioCtxClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -68,8 +66,10 @@ export const MusicPianoView: React.FC<MusicPianoViewProps> = ({
     setActiveKey(key.note);
     setTimeout(() => setActiveKey(null), 300);
 
+    // Record badge progress for "Nhạc Sĩ Tí Hon"
+    recordBadgeProgress('music', 1);
+
     if (soundEnabled) {
-      // Friendly speech of animal sound on every 4th tap
       if (Math.random() > 0.6) {
         speakVietnamese(`${key.animal} ${key.soundText}`);
       }

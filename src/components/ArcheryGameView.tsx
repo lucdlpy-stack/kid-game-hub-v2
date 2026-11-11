@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
+import { recordBadgeProgress } from '../services/badgeService';
 import { ArrowLeft, RotateCcw, Volume2, Sparkles, Trophy, Target, Zap } from 'lucide-react';
 import { playCorrectSound, playWrongSound, playClickSound, playSpecialSound, playVictoryFanfare, speakVietnamese } from '../utils/audio';
 
@@ -103,7 +104,12 @@ export const ArcheryGameView: React.FC<ArcheryGameViewProps> = ({
           if (!t.hit && Math.abs(t.x - bowX) < 12 && Math.abs(t.y - currentY) < 10) {
             hitFound = true;
             playCorrectSound();
-            setScore((s) => s + t.points);
+            const nextScore = score + t.points;
+            setScore(nextScore);
+
+            // Record progress towards "Bậc Thầy Bắn Cung"
+            recordBadgeProgress('archery', t.points);
+
             setHitMessage(`Trúng ${t.name}! +${t.points} Điểm`);
             setTimeout(() => setHitMessage(null), 1200);
 
